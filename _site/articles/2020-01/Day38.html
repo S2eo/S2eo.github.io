@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Hacking With Swift - DAY38Project8 : Review &amp; Challenge  버튼 테두리 만들기  Submit을 하였을 때 값이 틀리는 경우에도 Alert띄우기  값이 틀린경우에 score 1점 감점">
+  <meta name="keywords" content="조서현 and iOS">
+  <meta name="author" content="Day38 | 조서현의 블로그">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f5">
+
+  <!-- Twitter Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Day38 | 조서현의 블로그">
+  <meta name="twitter:description" content="Hacking With Swift - DAY38Project8 : Review &amp;amp; Challenge  버튼 테두리 만들기  Submit을 하였을 때 값이 틀리는 경우에도 Alert띄우기  값이 틀린경우에 score 1점 감점">
+  
+    <meta property="twitter:image" content="http://localhost:4000/img/leonids-logo.png">
+  
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://localhost:4000/articles/2020-01/Day38">
+  <meta property="og:title" content="Day38 | 조서현의 블로그">
+  <meta property="og:description" content="Hacking With Swift - DAY38Project8 : Review &amp;amp; Challenge  버튼 테두리 만들기  Submit을 하였을 때 값이 틀리는 경우에도 Alert띄우기  값이 틀린경우에 score 1점 감점">
+  
+    <meta property="og:image" content="http://localhost:4000/img/leonids-logo.png">
+  
+  <title>Day38 | 조서현의 블로그</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="http://localhost:4000/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+
+  <link rel="canonical" href="http://localhost:4000/articles/2020-01/Day38">
+  <link rel="alternate" type="application/rss+xml" title="조서현의 블로그" href="http://localhost:4000/feed.xml" />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <a href="http://localhost:4000/">
+    <img src="http://localhost:4000/img/profile.jpg" alt="" class="avatar">
+  </a>
+  
+  <a href="http://localhost:4000/" class="author_name">조서현</a>
+  <span class="author_job">iOS Developer</span>
+  <span class="author_bio mbm">iOS 개발자</span>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="http://localhost:4000/">Home</a>
+      </li>
+       
+      <li class="nav-item">
+        <a href="http://localhost:4000/archive/">Archive</a>
+      </li>
+          
+      <li class="nav-item">
+        <a href="http://localhost:4000/categories/">Categories</a>
+      </li>
+             
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  // based on http://stackoverflow.com/a/10300743/280842
+  function gen_mail_to_link(hs, subject) {
+    var lhs,rhs;
+    var p = hs.split('@');
+    lhs = p[0];
+    rhs = p[1];
+    document.write("<a class=\"social-link-item\" target=\"_blank\" href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\"><i class=\"fa fa-fw fa-envelope\"></i><\/a>");
+  }
+</script>
+<div class="social-links">
+  <ul>
+    
+      <li>
+      <script>gen_mail_to_link('tjgusllll@naver.com', 'Hello from website');</script>
+      </li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="http://github.com/S2eo" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "http://localhost:4000/" >
+  Home
+</a>
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="Day38">Day38</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        30 JAN 2020
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    1 min read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h1 id="hacking-with-swift---day38">Hacking With Swift - DAY38</h1>
+
+<h2 id="project8--review--challenge">Project8 : Review &amp; Challenge</h2>
+
+<ul>
+  <li>버튼 테두리 만들기</li>
+</ul>
+
+<p><a href="https://2.bp.blogspot.com/-f0ohJPyq5pE/Xi2p6V-XOiI/AAAAAAAACDw/ac4l5WLXFxMUF18c_yEKc4Spkq1thjaEwCLcBGAsYHQ/s1600/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2020-01-26%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B11.58.00.png" imageanchor="1"><img border="0" src="https://2.bp.blogspot.com/-f0ohJPyq5pE/Xi2p6V-XOiI/AAAAAAAACDw/ac4l5WLXFxMUF18c_yEKc4Spkq1thjaEwCLcBGAsYHQ/s640/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2020-01-26%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B11.58.00.png" width="640" height="494" data-original-width="1600" data-original-height="1235" /></a></p>
+
+<ul>
+  <li>Submit을 하였을 때 값이 틀리는 경우에도 Alert띄우기</li>
+</ul>
+
+<p><a href="https://4.bp.blogspot.com/-CsivBslkIak/Xi2p6VqswII/AAAAAAAACD0/akJxd1hONyQVRCasOzMaJmPg9q8NPjQPQCLcBGAsYHQ/s1600/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2020-01-26%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B11.57.53.png" imageanchor="1"><img border="0" src="https://4.bp.blogspot.com/-CsivBslkIak/Xi2p6VqswII/AAAAAAAACD0/akJxd1hONyQVRCasOzMaJmPg9q8NPjQPQCLcBGAsYHQ/s640/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2020-01-26%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B11.57.53.png" width="640" height="494" data-original-width="1600" data-original-height="1234" /></a></p>
+
+<ul>
+  <li>값이 틀린경우에 score 1점 감점</li>
+</ul>
+
+<p><a href="https://4.bp.blogspot.com/-yH3e8Ap6aZ4/Xi2p6Xo1zdI/AAAAAAAACDs/Zj11U1E2qg8s3ccIbcHu82RLeBvEMqabgCLcBGAsYHQ/s1600/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2020-01-27%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25AB%2B12.00.14.png" imageanchor="1"><img border="0" src="https://4.bp.blogspot.com/-yH3e8Ap6aZ4/Xi2p6Xo1zdI/AAAAAAAACDs/Zj11U1E2qg8s3ccIbcHu82RLeBvEMqabgCLcBGAsYHQ/s640/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2020-01-27%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%258C%25E1%2585%25A5%25E1%2586%25AB%2B12.00.14.png" width="640" height="309" data-original-width="658" data-original-height="318" /></a></p>
+
+
+  </article>
+</div><!-- <div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/articles/2020-01/Day38" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/articles/2020-01/Day38" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/articles/2020-01/Day38" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=http://localhost:4000/articles/2020-01/Day38" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=http://localhost:4000/articles/2020-01/Day38" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons --> 
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'S2eo';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        <footer>
+  &copy; 2020 조서현 <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/js/main.js"></script>
+
+
+</body>
+</html>

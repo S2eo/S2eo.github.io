@@ -3,11 +3,11 @@
 # Site wide configuration
 ####################################
 #
-title: 민동현의 블로그
-email: mindh890@gmail.com
-description: Dream Cometrue
-url: https://daeakin.github.io/ # the base hostname & protocol for your site
-keywords: ["민동현", "spring"]
+title: 조서현의 블로그
+email: tjgusllll@naver.com
+description: 하이하이~
+url: https://s2eo.github.io # the base hostname & protocol for your site
+keywords: ["조서현", "iOS"]
 
 #
 ###################################
@@ -33,12 +33,12 @@ kramdown:
 ####################################
 #
 owner:
-  name: 민동현
+  name: 조서현
   avatar: profile.jpg
-  job: "Back End Developer"
-  bio: "JAVA 개발자"
-  email: mindh890@gmail.com
-  disqus-shortname : daeakin
+  job: "iOS Developer"
+  bio: "iOS 개발자"
+  email: tjgusllll@naver.com
+  disqus-shortname : S2eo
   twitter: #username
   facebook: #username
   google:
@@ -48,10 +48,10 @@ owner:
     ad-client:
     ad-slot:
   bing-verify:
-  github: DaeAkin #username
+  github: S2eo #username
   gitlab: #username
   stackoverflow: #123456/username   from a "http://stackoverflow.com/users/123456/username" link
-  linkedin: 동현-민-736913183
+  # linkedin: 동현-민-736913183
   skype: #username
   xing: #username
   instagram: #username
@@ -68,4 +68,4 @@ owner:
   500px: #username
   codepen: #username
   reddit: #username
-  telegram: DonghyeonMin
+  telegram: #username
