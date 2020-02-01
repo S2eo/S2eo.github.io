@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="규칙 17 계승을 위한 설계와 문서를 갖추거나, 그럴 수 없다면 계승을 금지하라이 포스팅의 관련된 코드는 여기에 있습니다.계승을 위한 설계와 문서를 갖춘다는 것은 어떤 의미일까요?우선, 메소드를 재정의하면 무슨 일이 생기는지 정확하게 문서로 남겨야 합니다. 다시 말해, 재정의 가능...">
+  <meta name="keywords" content="민동현 and spring">
+  <meta name="author" content="계승을 위한 설계와 문서를 갖추거나, 그럴 수 없다면 계승을 금지하라 | 민동현의 블로그">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f5">
+
+  <!-- Twitter Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="계승을 위한 설계와 문서를 갖추거나, 그럴 수 없다면 계승을 금지하라 | 민동현의 블로그">
+  <meta name="twitter:description" content="규칙 17 계승을 위한 설계와 문서를 갖추거나, 그럴 수 없다면 계승을 금지하라이 포스팅의 관련된 코드는 여기에 있습니다.계승을 위한 설계와 문서를 갖춘다는 것은 어떤 의미일까요?우선, 메소드를 재정의하면 무슨 일이 생기는지 정확하게 문서로 남겨야 합니다. 다시 말해, 재정의 가능...">
+  
+    <meta property="twitter:image" content="http://localhost:4000/img/leonids-logo.png">
+  
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://localhost:4000/articles/2019-12/%EA%B3%84%EC%8A%B9%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A4%EA%B3%84%EC%99%80-%EB%AC%B8%EC%84%9C%EB%A5%BC-%EA%B0%96%EC%B6%94%EA%B1%B0%EB%82%98,-%EA%B7%B8%EB%9F%B4-%EC%88%98-%EC%97%86%EB%8B%A4%EB%A9%B4-%EA%B3%84%EC%8A%B9%EC%9D%84-%EA%B8%88%EC%A7%80%ED%95%98%EB%9D%BC">
+  <meta property="og:title" content="계승을 위한 설계와 문서를 갖추거나, 그럴 수 없다면 계승을 금지하라 | 민동현의 블로그">
+  <meta property="og:description" content="규칙 17 계승을 위한 설계와 문서를 갖추거나, 그럴 수 없다면 계승을 금지하라이 포스팅의 관련된 코드는 여기에 있습니다.계승을 위한 설계와 문서를 갖춘다는 것은 어떤 의미일까요?우선, 메소드를 재정의하면 무슨 일이 생기는지 정확하게 문서로 남겨야 합니다. 다시 말해, 재정의 가능...">
+  
+    <meta property="og:image" content="http://localhost:4000/img/leonids-logo.png">
+  
+  <title>계승을 위한 설계와 문서를 갖추거나, 그럴 수 없다면 계승을 금지하라 | 민동현의 블로그</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="http://localhost:4000/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+
+  <link rel="canonical" href="http://localhost:4000/articles/2019-12/%EA%B3%84%EC%8A%B9%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A4%EA%B3%84%EC%99%80-%EB%AC%B8%EC%84%9C%EB%A5%BC-%EA%B0%96%EC%B6%94%EA%B1%B0%EB%82%98,-%EA%B7%B8%EB%9F%B4-%EC%88%98-%EC%97%86%EB%8B%A4%EB%A9%B4-%EA%B3%84%EC%8A%B9%EC%9D%84-%EA%B8%88%EC%A7%80%ED%95%98%EB%9D%BC">
+  <link rel="alternate" type="application/rss+xml" title="민동현의 블로그" href="http://localhost:4000/feed.xml" />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <a href="http://localhost:4000/">
+    <img src="http://localhost:4000/img/profile.jpg" alt="" class="avatar">
+  </a>
+  
+  <a href="http://localhost:4000/" class="author_name">민동현</a>
+  <span class="author_job">Back End Developer</span>
+  <span class="author_bio mbm">JAVA 개발자</span>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="http://localhost:4000/">home</a>
+      </li>
+       
+      <li class="nav-item">
+        <a href="http://localhost:4000/archive/">Archive</a>
+      </li>
+          
+      <li class="nav-item">
+        <a href="http://localhost:4000/categories/">Categories</a>
+      </li>
+             
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  // based on http://stackoverflow.com/a/10300743/280842
+  function gen_mail_to_link(hs, subject) {
+    var lhs,rhs;
+    var p = hs.split('@');
+    lhs = p[0];
+    rhs = p[1];
+    document.write("<a class=\"social-link-item\" target=\"_blank\" href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\"><i class=\"fa fa-fw fa-envelope\"></i><\/a>");
+  }
+</script>
+<div class="social-links">
+  <ul>
+    
+      <li>
+      <script>gen_mail_to_link('mindh890@gmail.com', 'Hello from website');</script>
+      </li>
+    
+    
+    
+    
+    <li><a href="http://linkedin.com/in/동현-민-736913183" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    
+    <li><a href="http://github.com/DaeAkin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="https://t.me/DonghyeonMin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-telegram"></i></a></li>
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "http://localhost:4000/" >
+  Home
+</a>
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="계승을 위한 설계와 문서를 갖추거나, 그럴 수 없다면 계승을 금지하라">계승을 위한 설계와 문서를 갖추거나, 그럴 수 없다면 계승을 금지하라</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        2 DEC 2019
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    6 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h1 id="규칙-17-계승을-위한-설계와-문서를-갖추거나-그럴-수-없다면-계승을-금지하라">규칙 17 계승을 위한 설계와 문서를 갖추거나, 그럴 수 없다면 계승을 금지하라</h1>
+
+<p>이 포스팅의 관련된 코드는 <a href="https://github.com/DaeAkin/effectivejava/tree/master/src/main/java/com/donghyeon/effectivejava/rule17">여기에</a> 있습니다.</p>
+
+<p>계승을 위한 설계와 문서를 갖춘다는 것은 어떤 의미일까요?</p>
+
+<p>우선, 메소드를 재정의하면 무슨 일이 생기는지 정확하게 문서로 남겨야 합니다. 다시 말해, 재정의 가능 메소드를 내부적으로 어떻게 사용하는지 반드시 문서에 남기라는 것입니다.</p>
+
+<p>public 또는 protected로 선언된 모든 메소드와 생성자에 대해, 어떤 재정의 가능 메소드를 어떤 순서로 호출하는지, 그리고 호출 결과가 추후 어떤 영향을 미치는지 문서로 남겨야 합니다.</p>
+
+<blockquote>
+  <p>재정의가 가능하다는 것은 public 또는 protected로 선언된 비-final 메소드라는 뜻입니다.</p>
+</blockquote>
+
+<p>다시 말하면 상위 클래스에서 상속 가능한 메소드들의 스펙을 명시애햐 합니다.</p>
+
+<p>관습적으로, 재정의 가능 메소드를 어떤 식으로 호출하는지 메소드 주석문 마지막에 명시합니다.주석은. “이 구현은”이라는 문구로 시작합니다. 릴리즈에 따라서 달라질 수 있다는 뜻으로 하는 말은 아니고, 메소드 내부 동작 원리에 관한 주석입니다.</p>
+
+<h2 id="abstractcollection">AbstractCollection</h2>
+
+<p>예를들어 AbstractCollection은 Collection 인터페이스의 뼈대를 구현한 추상클래스 인데,</p>
+
+<p>AbstractCollection.remove() 함수를 보면 이런 주석이 달려 있습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="cm">/**
+     * {@inheritDoc}
+     *
+     * &lt;p&gt;This implementation iterates over the collection looking for the
+     * specified element.  If it finds the element, it removes the element
+     * from the collection using the iterator's remove method.
+     *
+     * &lt;p&gt;Note that this implementation throws an
+     * &lt;tt&gt;UnsupportedOperationException&lt;/tt&gt; if the iterator returned by this
+     * collection's iterator method does not implement the &lt;tt&gt;remove&lt;/tt&gt;
+     * method and this collection contains the specified object.
+     *
+     * @throws UnsupportedOperationException {@inheritDoc}
+     * @throws ClassCastException            {@inheritDoc}
+     * @throws NullPointerException          {@inheritDoc}
+     */</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">remove</span><span class="o">(</span><span class="nc">Object</span> <span class="n">o</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Iterator</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">iterator</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">==</span><span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">()==</span><span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">it</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">hasNext</span><span class="o">())</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">o</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">()))</span> <span class="o">{</span>
+                    <span class="n">it</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
+                    <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p>짧은 영어지식으로 해석을 해보자면, 삭제할 요소를 찾으면 iterator의 remove 메소드를 이용해서 요소를 삭제합니다. 
+이 컬렉션의 iterator 메서드가 반환하는 반복자가 remove 메서드를 구현하고 있지 않을 경우에는 UnsupportedOprationException 예외가 발행할 수 있습니다. 라고 적혀 있습니다.</p>
+
+<p>이 문서를 보면 iterator 메서드를 재정의하면 remove가 영향을 받는다는 사실을 확실히 알 수 있습니다.</p>
+
+<p>이전 규칙인 규칙 16번에서는 HashSet의 하위 클래스를 만드는 프로그래머는 add를 재정의하면 addAll에 무슨 일이 생길지 알 수 없었습니다.</p>
+
+<p>그러나 이렇게 하면 “좋은 API 문서는 메서드가 하는 일이 무엇인지 명시해야지, 그 일을 어떻게 하는지 명시해서는 안된다”는 원칙을 깨는 것이 되는데, 이는 계승이 캡슐화 원칙을 침해하기 때문에 발생하는 결과입니다. 하위 클래스가 안전한 클래스가 되려면, 문서에 반드시 구현 세부사항을 기술해야 합니다.</p>
+
+<p>그러나 문서만 제대로 썼다고 계승에 적합한 설계가 되는건 아닙니다. 너무 애쓰지 않고도 효율적인 하위 클래스를 작성할 수 있도록 하려면, 클래스 내부 동작에 개입할 수 있는 훅(hooks)을 신중하게 골라 protected 메소드 형태로 제공해야 합니다.</p>
+
+<h2 id="abstractlist-클래스">AbstractList 클래스</h2>
+
+<p>AbstractList 클래스 중에 removeRange() 라는 메소드가 있습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">protected</span> <span class="kt">void</span> <span class="nf">removeRange</span><span class="o">(</span><span class="kt">int</span> <span class="n">fromIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">toIndex</span><span class="o">)</span> <span class="o">{</span>
+    <span class="nc">ListIterator</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">listIterator</span><span class="o">(</span><span class="n">fromIndex</span><span class="o">);</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">,</span> <span class="n">n</span><span class="o">=</span><span class="n">toIndex</span><span class="o">-</span><span class="n">fromIndex</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">it</span><span class="o">.</span><span class="na">next</span><span class="o">();</span>
+        <span class="n">it</span><span class="o">.</span><span class="na">remove</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 메소드는 AbstractList.clear()가 내부적으로 사용하는 메소드인데,  removeRange() 메소드를 재정의하여 리스트 구현체의 내부 구현을 활용하면 clear 연산 성능을 많이 올릴 수 있습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">removeRange</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">size</span><span class="o">());</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 메소드는 List 구현체 사용자에게 흥미로울 것 없는 메소드 입니다. 하위 클래스에서 리스트에 대한 clear 메소드 실행 성능을 개선하기 쉽게 하려고 제공하는 메소드 입니다.</p>
+
+<p>removeRange 메소드가 없다면, 하위 클래스에서는 clear 메소드 성능이 리스트 길이의 제곱에 비례하여 나빠진다는 점을 감안하고 사용하거나, subList 메커니즘을 처음부터 끝까지 다시 작성해야 할 것입니다. 절대로 쉬운 작업이 아닙니다.</p>
+
+<p>그렇다면 계승을 고려하여 클래스를 설계할 때 protected로 선언할 멤버는 어떻게 정할까요? 불행히도, 이 문제를 푸는 마법은 없습니다. 그냥 열심히 생각하고 신중하게 고른 다음, 실제로 하위 클래스를 만들어보면서 테스트하는 것이 최선입니다.</p>
+
+<p>반대로 하위 클래스를 몇개 만들어 봐도 사용할 일이 없는 protected 멤버는 다시 private로 선언해야 합니다.</p>
+
+<p>자바 이펙티브 저자에 의하면 계승에 맞게 클래스를 테스트하는 데는 하위 클래스 세 개면 대체로 충분 했다고 합니다.</p>
+
+<h2 id="계승의-제약사항">계승의 제약사항</h2>
+
+<p>계승을 허용하려면 반드시 따라야 할 제약사항이 몇 가지 더 있습니다. 그 중 첫번째는, <strong>생성자는 직접적이건 간접적이건 재정의 가 가능한 메소드를 호출해서는 안됩니다.</strong> 이 규칙을 위반하면 프로그램에서는 오류가 발생합니다.</p>
+
+<p>상위 클래스 생성자는 하위 클래스 생성자보다 먼저 실행되므로, 하위 클래스에서 재정의한 메서드는 하위 클래스생성자가 실행되기 전에 호출 됩니다. 재정의한 메소드가 하위 클래스 생성자가 초기화한 결과에 의존할 경우, 그 메소드는 원하는 대로 실행되지 않습니다.</p>
+
+<h3 id="super">Super</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Super</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">Super</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Super()"</span><span class="o">);</span>
+        <span class="n">overrideMe</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">overrideMe</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Super overrideMe()"</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="sub">Sub</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Sub</span> <span class="kd">extends</span> <span class="nc">Super</span><span class="o">{</span>
+    
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">LocalDateTime</span> <span class="n">localDateTime</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">Sub</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sub()"</span><span class="o">);</span>
+        <span class="n">localDateTime</span> <span class="o">=</span> <span class="nc">LocalDateTime</span><span class="o">.</span><span class="na">now</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">overrideMe</span><span class="o">()</span> <span class="o">{</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"sub overrideMe()"</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">localDateTime</span><span class="o">.</span><span class="na">toLocalDate</span><span class="o">());</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="실행">실행</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Rule17</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Sub</span> <span class="n">sub</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Sub</span><span class="o">();</span>
+        <span class="n">sub</span><span class="o">.</span><span class="na">overrideMe</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>실행을 하게되면 localDateTime이 초기화가 되지 않아 NullPointerException이 일어납니다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; Task :Rule17.main() FAILED
+Super()
+sub overrideMe()
+Exception in thread "main" java.lang.NullPointerException
+	at com.donghyeon.effectivejava.rule17.Sub.overrideMe(Sub.java:17)
+</code></pre></div></div>
+
+<h2 id="마무리">마무리</h2>
+
+<p>이렇게 계승에 대한 제약조건과 고려해야할 사항들이 많습니다. 이런 문제를 풀는 가장 좋은 방법은 계승에 맞도록 설계하고 문서화하지 않은 클래스에 대한 하위 클래슨느 만들지 않는 것입니다. 하위 클래스 생성을 금지하는 방법에는 두가지가 있습니다.</p>
+
+<p>가장 쉬운 방법은 클래스를 final로 선언하는 거나, 모든 생성자를 private나 package-private로 선언하고 생성자대신 public 정적 팩터리 메소드를 추가하는 것입니다.</p>
+
+  </article>
+</div><!-- <div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/articles/2019-12/%EA%B3%84%EC%8A%B9%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A4%EA%B3%84%EC%99%80-%EB%AC%B8%EC%84%9C%EB%A5%BC-%EA%B0%96%EC%B6%94%EA%B1%B0%EB%82%98,-%EA%B7%B8%EB%9F%B4-%EC%88%98-%EC%97%86%EB%8B%A4%EB%A9%B4-%EA%B3%84%EC%8A%B9%EC%9D%84-%EA%B8%88%EC%A7%80%ED%95%98%EB%9D%BC" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/articles/2019-12/%EA%B3%84%EC%8A%B9%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A4%EA%B3%84%EC%99%80-%EB%AC%B8%EC%84%9C%EB%A5%BC-%EA%B0%96%EC%B6%94%EA%B1%B0%EB%82%98,-%EA%B7%B8%EB%9F%B4-%EC%88%98-%EC%97%86%EB%8B%A4%EB%A9%B4-%EA%B3%84%EC%8A%B9%EC%9D%84-%EA%B8%88%EC%A7%80%ED%95%98%EB%9D%BC" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/articles/2019-12/%EA%B3%84%EC%8A%B9%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A4%EA%B3%84%EC%99%80-%EB%AC%B8%EC%84%9C%EB%A5%BC-%EA%B0%96%EC%B6%94%EA%B1%B0%EB%82%98,-%EA%B7%B8%EB%9F%B4-%EC%88%98-%EC%97%86%EB%8B%A4%EB%A9%B4-%EA%B3%84%EC%8A%B9%EC%9D%84-%EA%B8%88%EC%A7%80%ED%95%98%EB%9D%BC" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=http://localhost:4000/articles/2019-12/%EA%B3%84%EC%8A%B9%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A4%EA%B3%84%EC%99%80-%EB%AC%B8%EC%84%9C%EB%A5%BC-%EA%B0%96%EC%B6%94%EA%B1%B0%EB%82%98,-%EA%B7%B8%EB%9F%B4-%EC%88%98-%EC%97%86%EB%8B%A4%EB%A9%B4-%EA%B3%84%EC%8A%B9%EC%9D%84-%EA%B8%88%EC%A7%80%ED%95%98%EB%9D%BC" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=http://localhost:4000/articles/2019-12/%EA%B3%84%EC%8A%B9%EC%9D%84-%EC%9C%84%ED%95%9C-%EC%84%A4%EA%B3%84%EC%99%80-%EB%AC%B8%EC%84%9C%EB%A5%BC-%EA%B0%96%EC%B6%94%EA%B1%B0%EB%82%98,-%EA%B7%B8%EB%9F%B4-%EC%88%98-%EC%97%86%EB%8B%A4%EB%A9%B4-%EA%B3%84%EC%8A%B9%EC%9D%84-%EA%B8%88%EC%A7%80%ED%95%98%EB%9D%BC" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons --> 
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'daeakin';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        <footer>
+  &copy; 2019 민동현 <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/js/main.js"></script>
+
+
+</body>
+</html>

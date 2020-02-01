@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="예외처리예외의 종류와 특징Errorjava.lang.Error 클래스의 서브클래스 들이다. 에런느 시스템에 뭔가 비정상적인 상황이 발생했을 경우 사용 된다.그래서 주로 자바 VM에서 발생 시키는 것이고 애플리케이션 코드에서 잡으려고 하면 안된다.OutOfMemoryError나 Th...">
+  <meta name="keywords" content="민동현 and spring">
+  <meta name="author" content="예외처리 | 민동현의 블로그">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f5">
+
+  <!-- Twitter Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="예외처리 | 민동현의 블로그">
+  <meta name="twitter:description" content="예외처리예외의 종류와 특징Errorjava.lang.Error 클래스의 서브클래스 들이다. 에런느 시스템에 뭔가 비정상적인 상황이 발생했을 경우 사용 된다.그래서 주로 자바 VM에서 발생 시키는 것이고 애플리케이션 코드에서 잡으려고 하면 안된다.OutOfMemoryError나 Th...">
+  
+    <meta property="twitter:image" content="http://localhost:4000/img/leonids-logo.png">
+  
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://localhost:4000/articles/2018-10/Java-%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC">
+  <meta property="og:title" content="예외처리 | 민동현의 블로그">
+  <meta property="og:description" content="예외처리예외의 종류와 특징Errorjava.lang.Error 클래스의 서브클래스 들이다. 에런느 시스템에 뭔가 비정상적인 상황이 발생했을 경우 사용 된다.그래서 주로 자바 VM에서 발생 시키는 것이고 애플리케이션 코드에서 잡으려고 하면 안된다.OutOfMemoryError나 Th...">
+  
+    <meta property="og:image" content="http://localhost:4000/img/leonids-logo.png">
+  
+  <title>예외처리 | 민동현의 블로그</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="http://localhost:4000/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+
+  <link rel="canonical" href="http://localhost:4000/articles/2018-10/Java-%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC">
+  <link rel="alternate" type="application/rss+xml" title="민동현의 블로그" href="http://localhost:4000/feed.xml" />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <a href="http://localhost:4000/">
+    <img src="http://localhost:4000/img/profile.jpg" alt="" class="avatar">
+  </a>
+  
+  <a href="http://localhost:4000/" class="author_name">민동현</a>
+  <span class="author_job">Back End Developer</span>
+  <span class="author_bio mbm">JAVA 개발자</span>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="http://localhost:4000/">home</a>
+      </li>
+       
+      <li class="nav-item">
+        <a href="http://localhost:4000/archive/">Archive</a>
+      </li>
+          
+      <li class="nav-item">
+        <a href="http://localhost:4000/categories/">Categories</a>
+      </li>
+             
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  // based on http://stackoverflow.com/a/10300743/280842
+  function gen_mail_to_link(hs, subject) {
+    var lhs,rhs;
+    var p = hs.split('@');
+    lhs = p[0];
+    rhs = p[1];
+    document.write("<a class=\"social-link-item\" target=\"_blank\" href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\"><i class=\"fa fa-fw fa-envelope\"></i><\/a>");
+  }
+</script>
+<div class="social-links">
+  <ul>
+    
+      <li>
+      <script>gen_mail_to_link('mindh890@gmail.com', 'Hello from website');</script>
+      </li>
+    
+    
+    
+    
+    <li><a href="http://linkedin.com/in/동현-민-736913183" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    
+    <li><a href="http://github.com/DaeAkin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="https://t.me/DonghyeonMin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-telegram"></i></a></li>
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "http://localhost:4000/" >
+  Home
+</a>
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="예외처리">예외처리</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        4 OCT 2018
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    4 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h2 id="예외처리">예외처리</h2>
+
+<h2 id="예외의-종류와-특징">예외의 종류와 특징</h2>
+
+<p><a href="https://3.bp.blogspot.com/-BRXJ5KTneHA/W7W2D-g1W3I/AAAAAAAAA_Q/NYtvtGP9x4EmNkzaitJHIKgyuerTeFCHgCLcBGAs/s1600/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%2B2018-10-04%2B%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2B3.41.02.png"><img src="https://3.bp.blogspot.com/-BRXJ5KTneHA/W7W2D-g1W3I/AAAAAAAAA_Q/NYtvtGP9x4EmNkzaitJHIKgyuerTeFCHgCLcBGAs/s640/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2018-10-04%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B3.41.02.png" alt="img" /></a></p>
+
+<h2 id="error">Error</h2>
+
+<p>java.lang.Error 클래스의 서브클래스 들이다. 에런느 시스템에 뭔가 비정상적인 상황이 발생했을 경우 사용 된다.</p>
+
+<p>그래서 주로 자바 VM에서 발생 시키는 것이고 애플리케이션 코드에서 잡으려고 하면 안된다.</p>
+
+<p>OutOfMemoryError나 ThreadDeath같은 에러는 catch 블록으로 잡아봤자 아무런 대응 방법이 없이 때문이다.</p>
+
+<p>따라서 시스템 레벨에서 특별한 작업을 하는 게 아니라면 애플리케이션에서는 이런 에러에 대한 처리는 신경 쓰지 않아도 된다.</p>
+
+<h2 id="exception과-체크-예외">Exception과 체크 예외</h2>
+
+<p>java.lang.Exception 클래스와 그 서브클래스로 정의되는 예외들은 에러와 달리</p>
+
+<p>개발자들이 만든 애플리케이션 코드의 작업 중에 예외상황이 발생했을 경우에 사용 된다.</p>
+
+<p>Exception클래스는 다시 <u>체크 예외</u> (복구 가능한 오류들) <u>언체크 예외</u> ( 복구 불가능한 오류들)로 구분 된다.</p>
+
+<p>체크 예외는 Exception 클래스의 서브 클래스 들이면서, <u>RuntimeException 클래스를 상속하지 않은 것</u>들을 말하고,</p>
+
+<p>언체크 예외는 <u>RuntimeException을 상속한 클래스</u>들을 말한다.</p>
+
+<p>일반적으로 예외라고 하면 Exception 클래스 중에 RuntimeException을 상속을 했느냐 안했느냐의 차이로 나누어 진다.</p>
+
+<p>체크 예외를 발생할 수 있는 메소드를 사용할 경우 반드시 예외를 처리하는 코드를 함께 작성해야 한다.</p>
+
+<p>이를 catch 문으로 잡든지, 다시 throws를 정의해서 메소드 밖으로 던져야 한다. 그렇지 않으면 컴파일 에러가 발생 한다.</p>
+
+<h2 id="runtimeexception과-언체크런타임">RuntimeException과 언체크/런타임</h2>
+
+<p>java.lang.RuntimeException 클래스를 상속한 예외들은 명시적인 예외처리를 강제하지 않기 때문에</p>
+
+<p>언체크 예외라고 불리거나 대표 클래스 이름을 따서 런타임 예외라고도 한다.</p>
+
+<p>에러와 마찬가지로 이 런타임 예외는 catch 문으로 잡거나 throws로 선언해줘도 되고,</p>
+
+<p>물론 명시적으로 잡거나 throws로 선언해줘도 상관은 없다.</p>
+
+<p>런타임 예외는 주로 프로그램의 오류가 있을 때 발생하도록 의도 된 것 들인데 , 할당되지 않은 객체에</p>
+
+<p>접근해서 NullPointerException이 발생하는 등이 있다.</p>
+
+<p>이런 예외는 미리 조건을 체크해서 주의 깊게 만든다면 피할 수 있지만 개발자가 부주의해서</p>
+
+<p>발생할 수 있는 경우에 발생하도록 만든 것이 런타임 예외다.</p>
+
+<p>따라서 런타임 예외는 예상하지 못했던 예외상황에서 발생하는 것이 아니기 때문에</p>
+
+<p>굳이 catch나 throws를 사용하지 않아도 되도록 만든 것 이다.</p>
+
+<h2 id="예시">예시</h2>
+
+<blockquote>
+  <h4 id="다음은-0으로-나누는-코드이다">다음은 0으로 나누는 코드이다.</h4>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">ex</span><span class="o">.</span><span class="na">pratice</span><span class="o">.</span><span class="na">donghyeon</span><span class="o">.</span><span class="na">test</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestMain</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">35</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">num</span><span class="o">/</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="output">Output</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exception in thread "main" java.lang.ArithmeticException: / by zero
+
+at ex.pratice.donghyeon.test.TestMain.main(TestMain.java:8)
+</code></pre></div></div>
+
+<blockquote>
+  <h4 id="0으로-나눌수-없다는-오류가-뜬다">(0으로 나눌수 없다는 오류가 뜬다.)</h4>
+</blockquote>
+
+<p>java.lang.ArithmeticException은 RuntimeException을 상속받은 클래스이다.</p>
+
+<p>public class ArithmeticException extends RuntimeException</p>
+
+<p>RuntimeException은 위에서 설명했듯이 UncheckedException이므로</p>
+
+<p>프로그래머가 오류를 안잡아줘도 컴파일러에서 오류를 잡아주기 때문에 문법적으로 오류는 없다.</p>
+
+<h2 id="예외를-처리하는데에는-크게-3가지-방법이-있다">예외를 처리하는데에는 크게 3가지 방법이 있다.</h2>
+
+<blockquote>
+  <h4 id="예외복구">예외복구</h4>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestMain</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+
+        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">35</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">num</span> <span class="o">/</span> <span class="mi">0</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ArithmeticException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"0으로 나눌수 없습니다."</span><span class="o">);</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="output-1">Output</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0으로 나눌수 없습니다.
+</code></pre></div></div>
+
+<blockquote>
+  <h4 id="예외처리-회피">예외처리 회피</h4>
+</blockquote>
+
+<p>예외처리 회피는 나를 호출한 곳으로 예외를 던져서 호출한 곳에서 예외를 처리해주는 것이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestMain</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">ArithmeticException</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">35</span><span class="o">;</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">num</span><span class="o">/</span><span class="mi">0</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이 방법은 예외처리를 <u>다른 곳으로 미루는 일</u>이 되므로 호출한 곳에서 예외처리가 되었는지 확인을 해야한다.</p>
+
+<blockquote>
+  <h4 id="예외-전환">예외 전환</h4>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestMain</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">35</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">num</span> <span class="o">/</span> <span class="mi">0</span><span class="o">);</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">ArithmeticException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nf">NotFoundStudentUncheckedException</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>예외전환은 그 예외가 발생하면 <u>다른 예외로 throw</u>를 던져주는 것이다.</p>
+
+<h2 id="사용자-예외-클래스-만들어보기">사용자 예외 클래스 만들어보기</h2>
+
+<h4 id="checkedexception-만들어보기">CheckedException 만들어보기</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NotFoundStudentCheckedException</span> <span class="kd">extends</span> <span class="nc">Exception</span><span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="uncheckedexception-만들어보기">UncheckedException 만들어보기</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NotFoundStudentUncheckedException</span> <span class="kd">extends</span> <span class="nc">RuntimeException</span><span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>사용자 임의 예외 클래스를 만드는 방법은 어렵지 않다.</p>
+
+<p>클래스를 생성한 후 Exception이나 RuntimeException을 상속받으면 끝이다.</p>
+
+<blockquote>
+  <h3 id="notfoundstudentuncheckedexceptionjava">NotFoundStudentUncheckedException.java</h3>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">NotFoundStudentUncheckedException</span> <span class="kd">extends</span> <span class="nc">RuntimeException</span><span class="o">{</span>
+    <span class="kd">public</span> <span class="nf">NotFoundStudentUncheckedException</span><span class="o">(</span><span class="nc">String</span> <span class="n">string</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">string</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span> 
+</code></pre></div></div>
+
+<h3 id="테스트">테스트</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">TestMain</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span>  <span class="o">{</span>
+       <span class="nc">Student</span> <span class="n">mathStudent</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">MathStudent</span><span class="o">();</span>
+       <span class="nc">String</span> <span class="n">findStudent</span> <span class="o">=</span> <span class="n">mathStudent</span><span class="o">.</span><span class="na">find</span><span class="o">();</span>
+       <span class="k">if</span><span class="o">(</span><span class="n">findStudent</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> 
+           <span class="k">throw</span> <span class="k">new</span> <span class="nf">NotFoundStudentUncheckedException</span><span class="o">(</span><span class="s">"학생을 찾지 못했습니다."</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>String의 값이 null이면 NotFoundStudentUncheckedException으로 던지는 코드이다.</p>
+
+<h3 id="output-2">Output</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exception in thread "main" ex.pratice.donghyeon.test.NotFoundStudentUncheckedException: 학생을 찾지 못했습니다.at ex.pratice.donghyeon.test.TestMain.main(TestMain.java:12)
+</code></pre></div></div>
+
+
+  </article>
+</div><!-- <div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/articles/2018-10/Java-%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/articles/2018-10/Java-%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/articles/2018-10/Java-%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=http://localhost:4000/articles/2018-10/Java-%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=http://localhost:4000/articles/2018-10/Java-%EC%98%88%EC%99%B8%EC%B2%98%EB%A6%AC" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons --> 
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'daeakin';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        <footer>
+  &copy; 2019 민동현 <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/js/main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="LinkedList 만들기LinkedList란ArrayList 는 삽입과 삭제를 수행할 때 연속적인 특징을 깨뜨리지 않기 위해 배열을 Shift 해줘야 합니다.이 때 발생하는 시간복잡도는 O(n) 입니다.그러나 LinkedLIst를 이용하게 되면, 시간복잡도를 O(1)만으로 끝낼 ...">
+  <meta name="keywords" content="민동현 and spring">
+  <meta name="author" content="나만의 LinkedList 만들어보기 | 민동현의 블로그">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f5">
+
+  <!-- Twitter Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="나만의 LinkedList 만들어보기 | 민동현의 블로그">
+  <meta name="twitter:description" content="LinkedList 만들기LinkedList란ArrayList 는 삽입과 삭제를 수행할 때 연속적인 특징을 깨뜨리지 않기 위해 배열을 Shift 해줘야 합니다.이 때 발생하는 시간복잡도는 O(n) 입니다.그러나 LinkedLIst를 이용하게 되면, 시간복잡도를 O(1)만으로 끝낼 ...">
+  
+    <meta property="twitter:image" content="http://localhost:4000/img/linkedlist.png">
+  
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://localhost:4000/articles/2019-06/%EB%82%98%EB%A7%8C%EC%9D%98-LinkedLIst-%EB%A7%8C%EB%93%A4%EA%B8%B0">
+  <meta property="og:title" content="나만의 LinkedList 만들어보기 | 민동현의 블로그">
+  <meta property="og:description" content="LinkedList 만들기LinkedList란ArrayList 는 삽입과 삭제를 수행할 때 연속적인 특징을 깨뜨리지 않기 위해 배열을 Shift 해줘야 합니다.이 때 발생하는 시간복잡도는 O(n) 입니다.그러나 LinkedLIst를 이용하게 되면, 시간복잡도를 O(1)만으로 끝낼 ...">
+  
+    <meta property="og:image" content="http://localhost:4000/img/linkedlist.png">
+  
+  <title>나만의 LinkedList 만들어보기 | 민동현의 블로그</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="http://localhost:4000/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+
+  <link rel="canonical" href="http://localhost:4000/articles/2019-06/%EB%82%98%EB%A7%8C%EC%9D%98-LinkedLIst-%EB%A7%8C%EB%93%A4%EA%B8%B0">
+  <link rel="alternate" type="application/rss+xml" title="민동현의 블로그" href="http://localhost:4000/feed.xml" />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <a href="http://localhost:4000/">
+    <img src="http://localhost:4000/img/profile.jpg" alt="" class="avatar">
+  </a>
+  
+  <a href="http://localhost:4000/" class="author_name">민동현</a>
+  <span class="author_job">Back End Developer</span>
+  <span class="author_bio mbm">JAVA 개발자</span>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="http://localhost:4000/">home</a>
+      </li>
+       
+      <li class="nav-item">
+        <a href="http://localhost:4000/archive/">Archive</a>
+      </li>
+          
+      <li class="nav-item">
+        <a href="http://localhost:4000/categories/">Categories</a>
+      </li>
+             
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  // based on http://stackoverflow.com/a/10300743/280842
+  function gen_mail_to_link(hs, subject) {
+    var lhs,rhs;
+    var p = hs.split('@');
+    lhs = p[0];
+    rhs = p[1];
+    document.write("<a class=\"social-link-item\" target=\"_blank\" href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\"><i class=\"fa fa-fw fa-envelope\"></i><\/a>");
+  }
+</script>
+<div class="social-links">
+  <ul>
+    
+      <li>
+      <script>gen_mail_to_link('mindh890@gmail.com', 'Hello from website');</script>
+      </li>
+    
+    
+    
+    
+    <li><a href="http://linkedin.com/in/동현-민-736913183" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    
+    <li><a href="http://github.com/DaeAkin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="https://t.me/DonghyeonMin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-telegram"></i></a></li>
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "http://localhost:4000/" >
+  Home
+</a>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "http://localhost:4000/img/linkedlist.png"
+  
+  alt="나만의 LinkedList 만들어보기 feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="나만의 LinkedList 만들어보기">나만의 LinkedList 만들어보기</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        8 JUN 2019
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    6 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h1 id="linkedlist-만들기">LinkedList 만들기</h1>
+
+<h2 id="linkedlist란">LinkedList란</h2>
+
+<p><u>ArrayList</u> 는 삽입과 삭제를 수행할 때 연속적인 특징을 깨뜨리지 않기 위해 배열을 Shift 해줘야 합니다.</p>
+
+<p>이 때 발생하는 시간복잡도는 <strong>O(n)</strong> 입니다.</p>
+
+<p>그러나 LinkedLIst를 이용하게 되면, 시간복잡도를 O(1)만으로 끝낼 수 있기 때문에,</p>
+
+<p>ArrayLIst에 비해 삽입과 삭제가 월등히 빠르다고 할 수 있습니다.</p>
+
+<h2 id="구조">구조</h2>
+
+<p>LinkedList의 구조는 다음과 같습니다.</p>
+
+<p><img src="https://github.com/DaeAkin/DaeAkin.github.io/blob/master/img/blog/linkedlist/image1.png?raw=true" alt="" width="50%" height="50%" float="left" /></p>
+
+<p>LinkedList는 내부적으로 Node라는 객체를 갖고 있습니다.</p>
+
+<p>이 Node들을 서로 연결해서 자료를 참조하는 방법 입니다.</p>
+
+<p>Node의 next 변수는 자기자신의 다음으로 올 Node객체를 알고 있습니다.</p>
+
+<p>그러나 LinkedList 역시 문제가 있습니다.</p>
+
+<p>ArrayList는 논리적 저장순서와 물리적 저장 순서가 일치하기 때문에 원하는 index 번호를 알면</p>
+
+<p>O(1)의 시간으로 해당 자료에 바로 참조 할 수 있습니다.</p>
+
+<p>그러나 LinkedLIst는 원하는 자료를 찾기 위해서는 처음 Node부터 검색해봐야 하기 때문에</p>
+
+<p>O(n)의 시간만큼 걸립니다.</p>
+
+<h2 id="구현하기">구현하기</h2>
+
+<p>클래스이름은 MyLinkedList로 하겠습니다.</p>
+
+<p>클래스를 하나 만들고 제너릭 타입을 선언해주세요.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MySinglyLinkedList</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Node 클래스를 내부에 하나 만들어주세요.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
+  	<span class="c1">// 값을 저장할 때 쓰일 변수</span>
+		<span class="nc">Object</span> <span class="n">data</span><span class="o">;</span>
+  	<span class="c1">// 다음 노드를 가르킬 변수</span>
+		<span class="nc">Node</span> <span class="n">next</span><span class="o">;</span>
+		
+		<span class="c1">// 처음 LinkedList를 만들때 쓰일 생성자 </span>
+		<span class="kd">public</span> <span class="nf">Node</span><span class="o">(</span><span class="nc">Object</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+			<span class="k">this</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+		<span class="o">}</span>
+		
+	<span class="o">}</span>
+</code></pre></div></div>
+
+<p>LinkedList는 Node가 몇개 있는지 알려주는 <u>size</u> 변수와</p>
+
+<p>첫번째 노드를 가르킬 <u>head</u> 변수가 필요합니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>
+<span class="kd">private</span> <span class="nc">Node</span> <span class="n">head</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h3 id="지금까지의-작업">지금까지의 작업</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MySinglyLinkedList</span><span class="o">&lt;</span><span class="no">E</span><span class="o">&gt;</span> <span class="o">{</span>
+	
+	<span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="o">{</span>
+		<span class="nc">Object</span> <span class="n">data</span><span class="o">;</span>
+		<span class="nc">Node</span> <span class="n">next</span><span class="o">;</span>
+		
+		<span class="c1">// 처음 LinkedList를 만들때 쓰일 생성자 </span>
+		<span class="kd">public</span> <span class="nf">Node</span><span class="o">(</span><span class="nc">Object</span> <span class="n">data</span><span class="o">)</span> <span class="o">{</span>
+			<span class="k">this</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">;</span>
+			<span class="k">this</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+		<span class="o">}</span>
+		
+	<span class="o">}</span>
+	<span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="o">;</span>
+	<span class="kd">private</span> <span class="nc">Node</span> <span class="n">head</span><span class="o">;</span>
+	
+	<span class="c1">//LinkedList의 생성자</span>
+	<span class="c1">//처음 LinkedList를 만든다면 head는 비어 있다.</span>
+	<span class="kd">public</span> <span class="nf">MySinglyLinkedList</span><span class="o">()</span> <span class="o">{</span>
+		<span class="n">head</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+		<span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+	<span class="o">}</span>
+</code></pre></div></div>
+
+<h2 id="add함수-만들기">add함수 만들기</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">add</span><span class="o">(</span><span class="no">E</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
+  <span class="c1">// 첫번 째 노드이면,</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">head</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Node</span><span class="o">(</span><span class="n">element</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+  <span class="c1">// 첫번째 노드부터 탐색</span>
+  <span class="nc">Node</span> <span class="n">node</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+  <span class="c1">// 헤더의 다음 노드를 계속 탐색하는데, 다음 노드가 null이 아닐 떄 까지 탐색한다.</span>
+  <span class="k">for</span><span class="o">(</span> <span class="o">;</span> <span class="n">node</span><span class="o">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span> <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">next</span><span class="o">)</span> <span class="o">{</span>
+
+  <span class="o">}</span>
+  <span class="c1">// 탐색을 다했으면 node 객체가 마지막 노드를 가지고 있게 된다.</span>
+  <span class="n">node</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Node</span><span class="o">(</span><span class="n">element</span><span class="o">);</span>
+  <span class="o">}</span>
+
+  <span class="n">size</span><span class="o">++;</span>
+
+  <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="https://github.com/DaeAkin/DaeAkin.github.io/blob/master/img/blog/linkedlist/image2.png?raw=true" alt="" width="50%" height="50%" float="left" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">add()</code> 함수는 마지막 Node를 찾아 새로운 Node를 만들어 이어줘야 합니다.</p>
+
+<p>그러기 위해서는 처음 Node부터 Node.next가 null 을 만날 때 까지 탐색을 해야합니다.</p>
+
+<p>탐색한 노드를 node 변수에 담고, node.next에 새로운 Node객체를 생성해주면 됩니다.</p>
+
+<h2 id="get함수-만들기">get함수 만들기</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 몇번째 노드를 가져오고 싶은지</span>
+<span class="kd">public</span> <span class="no">E</span> <span class="nf">get</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span> 
+   <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">size</span> <span class="o">&lt;=</span><span class="n">index</span><span class="o">)</span>
+     <span class="k">throw</span> <span class="k">new</span> <span class="nf">IndexOutOfBoundsException</span><span class="o">();</span>
+
+   <span class="nc">Node</span> <span class="n">node</span> <span class="o">=</span> <span class="n">getNode</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+   <span class="k">return</span> <span class="o">(</span><span class="no">E</span><span class="o">)</span> <span class="n">node</span><span class="o">.</span><span class="na">data</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="nc">Node</span> <span class="nf">getNode</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Node</span> <span class="n">node</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+
+   <span class="c1">// index 까지 node를 움직인다.</span>
+   <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+     <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+   <span class="o">}</span>
+
+   <span class="k">return</span> <span class="n">node</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="https://github.com/DaeAkin/DaeAkin.github.io/blob/master/img/blog/linkedlist/image3.png?raw=true" alt="" width="50%" height="50%" float="left" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">get()</code> 함수는 해당 index 값 까지 node를 head부터 돌려서 해당 Node객체를 가져오면 됩니다.</p>
+
+<p>이때 index의 값이 마이너스 값이거나 size보다 같거나크면 예외를 던져줍니다.</p>
+
+<h2 id="set함수-만들기">set함수 만들기</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// n번째 있는 노드의 값 수정하고</span>
+<span class="c1">// 원래 들어있던 값 리턴하기</span>
+<span class="kd">public</span> <span class="no">E</span> <span class="nf">set</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">,</span><span class="no">E</span> <span class="n">element</span> <span class="o">)</span> <span class="o">{</span>
+  <span class="c1">//get() 호출하기</span>
+  <span class="no">E</span> <span class="n">old</span> <span class="o">=</span> <span class="n">get</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+  <span class="c1">// 커서를 head에 맞춘다.</span>
+  <span class="nc">Node</span> <span class="n">node</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+  <span class="c1">// index까지 node를 움직인다.</span>
+  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">index</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+    <span class="n">node</span><span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+  <span class="o">}</span>
+  <span class="c1">// node</span>
+  <span class="n">node</span><span class="o">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">element</span><span class="o">;</span>
+
+  <span class="k">return</span> <span class="n">old</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">set()</code> 함수는 방금만든 <code class="language-plaintext highlighter-rouge">get()</code> 함수와 비슷합니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">get()</code> 함수처럼 index 만큼 for문을 돌려 해당 Node객체를 가르키고</p>
+
+<p>가르킨 객체의 data를 변경해주면 됩니다.</p>
+
+<h2 id="indexof함수-만들기">indexOf함수 만들기</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// 해당 요소가 몇번 째 노드에 있는지?</span>
+<span class="kd">public</span> <span class="kt">int</span> <span class="nf">indexOf</span><span class="o">(</span><span class="no">E</span> <span class="n">element</span><span class="o">)</span> <span class="o">{</span>
+  <span class="nc">Node</span> <span class="n">node</span> <span class="o">=</span> <span class="n">head</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span><span class="mi">0</span><span class="o">;</span>
+  <span class="k">for</span><span class="o">(;</span> <span class="n">node</span><span class="o">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">;</span> <span class="n">node</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="na">next</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">node</span><span class="o">.</span><span class="na">data</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">element</span><span class="o">))</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="n">cnt</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">cnt</span><span class="o">++;</span>
+  <span class="o">}</span>
+  <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">indexOf()</code> 함수는 Node 객체에 해당 값이 존재하는지 판별하는 객체입니다.</p>
+
+<p>for문을 돌때마다 Node의 data에 접근하여 <code class="language-plaintext highlighter-rouge">equals</code> 함수로 비교를 해줍니다.</p>
+
+<h2 id="remove-함수">remove 함수</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//해당 index의 요소 삭제 중요!</span>
+<span class="kd">public</span> <span class="no">E</span> <span class="nf">remove</span><span class="o">(</span><span class="kt">int</span> <span class="n">index</span><span class="o">)</span> <span class="o">{</span>
+  <span class="no">E</span> <span class="n">element</span> <span class="o">=</span> <span class="n">get</span><span class="o">(</span><span class="n">index</span><span class="o">);</span>
+
+  <span class="nc">Node</span> <span class="n">preNode</span> <span class="o">=</span> <span class="n">getNode</span><span class="o">(</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+
+  <span class="c1">// 첫번째 노드이면?</span>
+  <span class="k">if</span> <span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Node</span><span class="o">(</span><span class="n">head</span><span class="o">.</span><span class="na">next</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="n">preNode</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">preNode</span><span class="o">.</span><span class="na">next</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+  <span class="o">}</span>
+
+  <span class="n">size</span><span class="o">--;</span>
+  <span class="k">return</span> <span class="n">element</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">remove()</code> 함수는 조금 복잡합니다.</p>
+
+<h4 id="1-첫번째-노드를-삭제한다면-첫번-째-노드의-다음-노드가-head가-됩니다">1) 첫번째 노드를 삭제한다면 첫번 째 노드의 다음 노드가 head가 됩니다.</h4>
+
+<p><img src="https://github.com/DaeAkin/DaeAkin.github.io/blob/master/img/blog/linkedlist/image4.png?raw=true" alt="" width="50%" height="50%" float="left" /></p>
+
+<h4 id="2-중간에-노드를-삭제한다면-이전-노드와-다음-노드를-서로-이어줘야-합니다">2) 중간에 노드를 삭제한다면, 이전 노드와 다음 노드를 서로 이어줘야 합니다.</h4>
+
+<p><img src="https://github.com/DaeAkin/DaeAkin.github.io/blob/master/img/blog/linkedlist/image5.png?raw=true" alt="" width="50%" height="50%" float="left" /></p>
+
+<h2 id="코드">코드</h2>
+
+<p><a href="https://github.com/DaeAkin/baekjoon/blob/master/algorism/src/datastructure/MySinglyLinkedList.java">LinkedLIst 구현</a></p>
+
+<h2 id="마무리">마무리</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>LinkedList</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>add(끝)</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <td>add(시작)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>add(일반적으로)</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <td>get/set</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <td>indexOf</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <td>remove(끝)</td>
+      <td>n</td>
+    </tr>
+    <tr>
+      <td>remove(시작)</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>remove(일반적으로)</td>
+      <td>n</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>지금까지 단방향 LinkedLIst를 구현해보았습니다.</p>
+
+<p>다음시간에는 더 많은 장점을 가진 양방향 LinkedList로 찾아뵙겠습니다.</p>
+
+  </article>
+</div><!-- <div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/articles/2019-06/%EB%82%98%EB%A7%8C%EC%9D%98-LinkedLIst-%EB%A7%8C%EB%93%A4%EA%B8%B0" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/articles/2019-06/%EB%82%98%EB%A7%8C%EC%9D%98-LinkedLIst-%EB%A7%8C%EB%93%A4%EA%B8%B0" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/articles/2019-06/%EB%82%98%EB%A7%8C%EC%9D%98-LinkedLIst-%EB%A7%8C%EB%93%A4%EA%B8%B0" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=http://localhost:4000/articles/2019-06/%EB%82%98%EB%A7%8C%EC%9D%98-LinkedLIst-%EB%A7%8C%EB%93%A4%EA%B8%B0" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=http://localhost:4000/articles/2019-06/%EB%82%98%EB%A7%8C%EC%9D%98-LinkedLIst-%EB%A7%8C%EB%93%A4%EA%B8%B0" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons --> 
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'daeakin';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        <footer>
+  &copy; 2019 민동현 <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/js/main.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="스프링에서 유효성 검사하기 (Spring Validator)개요스프링 프레임워크 4.0은 빈 검증기 1.0(JSR-303) 와 1.1(JSR-349)를 지원하며Spring의 Validator 인터페이스에 적용할 수 있습니다.어플리케이션은 빈 검증기를 전체에 사용할것인지, 아니면 부...">
+  <meta name="keywords" content="민동현 and spring">
+  <meta name="author" content="Spring Validator | 민동현의 블로그">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f5">
+
+  <!-- Twitter Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Spring Validator | 민동현의 블로그">
+  <meta name="twitter:description" content="스프링에서 유효성 검사하기 (Spring Validator)개요스프링 프레임워크 4.0은 빈 검증기 1.0(JSR-303) 와 1.1(JSR-349)를 지원하며Spring의 Validator 인터페이스에 적용할 수 있습니다.어플리케이션은 빈 검증기를 전체에 사용할것인지, 아니면 부...">
+  
+    <meta property="twitter:image" content="http://localhost:4000/img/validation.jpg">
+  
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://localhost:4000/articles/2019-04/Spring%EC%97%90%EC%84%9C-validation-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0">
+  <meta property="og:title" content="Spring Validator | 민동현의 블로그">
+  <meta property="og:description" content="스프링에서 유효성 검사하기 (Spring Validator)개요스프링 프레임워크 4.0은 빈 검증기 1.0(JSR-303) 와 1.1(JSR-349)를 지원하며Spring의 Validator 인터페이스에 적용할 수 있습니다.어플리케이션은 빈 검증기를 전체에 사용할것인지, 아니면 부...">
+  
+    <meta property="og:image" content="http://localhost:4000/img/validation.jpg">
+  
+  <title>Spring Validator | 민동현의 블로그</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="http://localhost:4000/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+
+  <link rel="canonical" href="http://localhost:4000/articles/2019-04/Spring%EC%97%90%EC%84%9C-validation-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0">
+  <link rel="alternate" type="application/rss+xml" title="민동현의 블로그" href="http://localhost:4000/feed.xml" />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <a href="http://localhost:4000/">
+    <img src="http://localhost:4000/img/profile.jpg" alt="" class="avatar">
+  </a>
+  
+  <a href="http://localhost:4000/" class="author_name">민동현</a>
+  <span class="author_job">Back End Developer</span>
+  <span class="author_bio mbm">JAVA 개발자</span>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="http://localhost:4000/">home</a>
+      </li>
+       
+      <li class="nav-item">
+        <a href="http://localhost:4000/archive/">Archive</a>
+      </li>
+          
+      <li class="nav-item">
+        <a href="http://localhost:4000/categories/">Categories</a>
+      </li>
+             
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  // based on http://stackoverflow.com/a/10300743/280842
+  function gen_mail_to_link(hs, subject) {
+    var lhs,rhs;
+    var p = hs.split('@');
+    lhs = p[0];
+    rhs = p[1];
+    document.write("<a class=\"social-link-item\" target=\"_blank\" href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\"><i class=\"fa fa-fw fa-envelope\"></i><\/a>");
+  }
+</script>
+<div class="social-links">
+  <ul>
+    
+      <li>
+      <script>gen_mail_to_link('mindh890@gmail.com', 'Hello from website');</script>
+      </li>
+    
+    
+    
+    
+    <li><a href="http://linkedin.com/in/동현-민-736913183" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    
+    <li><a href="http://github.com/DaeAkin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="https://t.me/DonghyeonMin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-telegram"></i></a></li>
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "http://localhost:4000/" >
+  Home
+</a>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "http://localhost:4000/img/validation.jpg"
+  
+  alt="Spring Validator feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="Spring Validator">Spring Validator</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        15 APR 2019
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    12 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h1 id="스프링에서-유효성-검사하기-spring-validator">스프링에서 유효성 검사하기 (Spring Validator)</h1>
+
+<h2 id="개요">개요</h2>
+
+<p>스프링 프레임워크 4.0은 빈 검증기 1.0(JSR-303) 와 1.1(JSR-349)를 지원하며
+Spring의 <code class="language-plaintext highlighter-rouge">Validator</code> 인터페이스에 적용할 수 있습니다.</p>
+
+<p>어플리케이션은 빈 검증기를 전체에 사용할것인지, 아니면 부분적으로만 사용할것인지 선택할 수 있습니다. 
+검증 로직의 어노테이션 사용 없이 <code class="language-plaintext highlighter-rouge">DataBinder</code> 를 이용하여 <code class="language-plaintext highlighter-rouge">Validator</code> 를 추가적으로 등록할 수 있습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">DataBinder</code>은 애플리케이션의 도메인모델에 동적으로 바인딩 할 때 유용합니다. 
+스프링은 데이터바인딩을 하기 위해 <code class="language-plaintext highlighter-rouge">DataBinder</code> 을 제공해줍니다.
+<code class="language-plaintext highlighter-rouge">Validator</code> 와 <code class="language-plaintext highlighter-rouge">DataBinder</code> 는 MVC 프레임워크에서 주로사용되는 <strong>유효성 검사 패키지</strong> 입니다.</p>
+
+<p>스프링 MVC에서 <code class="language-plaintext highlighter-rouge">Validator</code> 인터페이스는 HTML 폼에 있는 모든필드를 검증하기 위해서 사용됩니다.
+controller 클래스안에 <code class="language-plaintext highlighter-rouge">@InitBinder</code> 어노테이션을 이용해서 설정할 수 있습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">@InitBinder</code> 어노테이션은 메소드레벨의 어노테이션이며, <code class="language-plaintext highlighter-rouge">WebDataBinder</code> 를 초기화하기 위해 사용합니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">WebDataBinder</code> 클래스는 웹에서 온 request 파라미터들을 model 오브젝트에 바인드를 해줍니다.</p>
+
+<p>자신이 만든 커스텀 <code class="language-plaintext highlighter-rouge">Validator</code> 를 컨트롤러에 등록하고 싶다면 <code class="language-plaintext highlighter-rouge">WebDataBinder.addValidators()</code> 메소드를 통해 
+등록이 가능합니다.</p>
+
+<p>인자나, model 오브젝트에 <code class="language-plaintext highlighter-rouge">@Validator</code> 어노테이션을 작성하면, 핸들러 메소드가 이를 알고 커스텀 validator를 등록해줍니다.</p>
+
+<p>만약 검증을 위반하는 사항이 발견된다면, 자동적으로 에러가 <code class="language-plaintext highlighter-rouge">BindingResult</code> 에게 가게 됩니다.</p>
+
+<h2 id="환경설정">환경설정</h2>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">&lt;!-- hibernate-validator 5~6 버전대랑 javax.validation 1.x.x는 호환이 안된다. --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+       <span class="nt">&lt;groupId&gt;</span>org.hibernate.validator<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>hibernate-validator<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>6.0.10.Final<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+<span class="c">&lt;!-- https://mvnrepository.com/artifact/javax.validation/validation-api --&gt;</span>
+<span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>javax.validation<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>validation-api<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.0.1.Final<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<h2 id="들어가며">들어가며</h2>
+
+<p>검증기를 사용하는 방법은 두가지가 있습니다.</p>
+
+<p>첫째로 모델 오브젝트에 주석을 사용해서 작성하는 방법과,</p>
+
+<p>두번째로 <code class="language-plaintext highlighter-rouge">Validator</code> 인터페이스를 구현하는 방법입니다.</p>
+
+<h2 id="주석을-이용해서-검증하기">주석을 이용해서 검증하기.</h2>
+
+<p>먼저 2개의 필드를 가진 MemberDto 클래스를 만들겠습니다.</p>
+
+<blockquote>
+  <h3 id="memberdto">MemberDto</h3>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">kei890</span><span class="o">.</span><span class="na">validationtutorial</span><span class="o">.</span><span class="na">dto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.validation.constraints.NotNull</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">javax.validation.constraints.Size</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Component</span><span class="o">;</span>
+
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemberDto</span> <span class="o">{</span>
+	
+	<span class="kt">int</span> <span class="n">no</span><span class="o">;</span>
+	
+	<span class="nd">@NotNull</span>
+	<span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="mi">1</span><span class="o">,</span> <span class="n">max</span><span class="o">=</span><span class="mi">30</span><span class="o">)</span>
+	<span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+	
+	<span class="nd">@NotNull</span>
+	<span class="nd">@Size</span><span class="o">(</span><span class="n">min</span><span class="o">=</span><span class="mi">8</span><span class="o">,</span> <span class="n">max</span><span class="o">=</span><span class="mi">30</span> <span class="o">,</span> <span class="n">message</span><span class="o">=</span><span class="s">"비밀번호 오류!"</span><span class="o">)</span>
+	<span class="nc">String</span> <span class="n">pw</span><span class="o">;</span>
+	
+	<span class="kd">public</span> <span class="nf">MemberDto</span><span class="o">()</span> <span class="o">{</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getNo</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">no</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNo</span><span class="o">(</span><span class="kt">int</span> <span class="n">no</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">no</span> <span class="o">=</span> <span class="n">no</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">String</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getPw</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">pw</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPw</span><span class="o">(</span><span class="nc">String</span> <span class="n">pw</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">pw</span> <span class="o">=</span> <span class="n">pw</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="s">"id : "</span> <span class="o">+</span> <span class="n">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">"\n pw :"</span> <span class="o">+</span> <span class="n">getPw</span><span class="o">();</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<p>id의 길이는 1 부터 30까지 그리고 pw의 길이는 8 부터 30까지 주었고,
+오류가 발생시 <code class="language-plaintext highlighter-rouge">비밀번호 오류!</code> 라는 메세지를 뿌리도록 작성했습니다.</p>
+
+<p>어노테이션에 대한 설명은 다음과 같습니다.</p>
+
+<ul>
+  <li><strong>@NotNull</strong> - 값이 null인지 체크해줍니다. 그러나 빈배열은 체크를 해주지 못합니다.</li>
+  <li><strong>@Pattern</strong> - 값을 주어진 표현식으로만 제한합니다. ex) 값을 영어만 받고싶은 경우<code class="language-plaintext highlighter-rouge"> @Pattern(regexp=”[^0-9]*”)</code></li>
+  <li><strong>@Past</strong> - 현재보다 과거날짜만 입력가능합니다. ex) 사용자의 생일을 입력할 때</li>
+  <li><strong>@Min</strong> - 지정해준 정수값과 같거나 커야합니다.</li>
+  <li><strong>@Max</strong> - 지정해준 정수값과 같거나 작아야 합니다.</li>
+  <li><strong>@NotBlank</strong> - 문자열이 null인지 체크하고 공백을 제외한 문자열이 0보다 큰지 체크합니다. 이 어노테이션은 JSR 303이 아닙니다.</li>
+  <li><strong>@Email</strong> - 유효한 이메일 형식인지 확인합니다. 이 어노테이션 또한 JSR 303이 아닙니다.</li>
+</ul>
+
+<blockquote>
+  <h3 id="membercontroller">MemberController</h3>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">kei890</span><span class="o">.</span><span class="na">validationtutorial</span><span class="o">.</span><span class="na">controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.validation.Valid</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.ui.Model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.validation.BindingResult</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ModelAttribute</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.kei890.validationtutorial.dto.MemberDto</span><span class="o">;</span>
+
+<span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemberController</span> <span class="o">{</span>
+	
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">moveTestJsp</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+    	<span class="c1">//빈 객체 넘겨줘야함.</span>
+    	<span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"memberDto"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">MemberDto</span><span class="o">());</span>
+    	<span class="k">return</span> <span class="s">"insert"</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/insert"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">memberInsert</span><span class="o">(</span><span class="nd">@Valid</span> <span class="nd">@ModelAttribute</span> <span class="nc">MemberDto</span> <span class="n">memberDto</span><span class="o">,</span>
+    		<span class="nc">BindingResult</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+     
+    	<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"---- MemberController::memberInsert() ----"</span><span class="o">);</span>
+    	    	
+    	<span class="k">if</span><span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">hasErrors</span><span class="o">())</span> <span class="o">{</span>
+    		<span class="c1">//form에 에러가 있으면</span>
+    		<span class="k">return</span> <span class="s">"insert"</span><span class="o">;</span>
+    	<span class="o">}</span>
+    	<span class="c1">//에러가 없으면</span>
+    	<span class="k">return</span> <span class="s">""</span><span class="o">;</span>
+    	
+    <span class="o">}</span>
+    
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<blockquote>
+  <h3 id="insertjsp">insert.jsp</h3>
+</blockquote>
+
+<div class="language-jsp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;%@ page </span><span class="na">language=</span><span class="s">"java"</span><span class="na"> contentType=</span><span class="s">"text/html; charset=UTF-8"</span><span class="na"> pageEncoding=</span><span class="s">"UTF-8"</span> <span class="nt">%&gt;</span>
+<span class="nt">&lt;%@ taglib </span><span class="na">prefix=</span><span class="s">"form"</span><span class="na"> uri=</span><span class="s">"http://www.springframework.org/tags/form"</span> <span class="nt">%&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+    <span class="nt">&lt;head&gt;</span>
+        <span class="nt">&lt;title&gt;</span>Sign Up<span class="nt">&lt;/title&gt;</span>
+        <span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">"Content-Type"</span> <span class="na">content=</span><span class="s">"text/html; charset=UTF-8"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">"stylesheet"</span> <span class="na">href=</span><span class="s">"https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;style </span><span class="na">type=</span><span class="s">"text/css"</span><span class="nt">&gt;</span>
+            <span class="nc">.errormsg</span> <span class="p">{</span>
+                <span class="nl">color</span><span class="p">:</span> <span class="no">red</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="nt">&lt;/style&gt;</span>
+    <span class="nt">&lt;/head&gt;</span>
+    <span class="nt">&lt;body&gt;</span>
+        <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"container"</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;h2</span> <span class="na">align=</span><span class="s">"center"</span> <span class="na">class=</span><span class="s">"text-primary"</span><span class="nt">&gt;</span>Spring MVC Form Validation Example<span class="nt">&lt;/h2&gt;</span>
+            <span class="nt">&lt;hr</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;div&gt;</span> <span class="nt">&lt;/div&gt;</span>
+ 
+            <span class="nt">&lt;form:form </span><span class="na">action=</span><span class="s">"insert"</span><span class="na"> method=</span><span class="s">"POST"</span><span class="na"> modelAttribute=</span><span class="s">"memberDto"</span><span class="nt">&gt;</span>
+                 <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;label&gt;</span>ID :<span class="nt">&lt;/label&gt;&lt;form:input </span><span class="na">path=</span><span class="s">"id"</span><span class="na"> size=</span><span class="s">"30"</span><span class="na"> cssClass=</span><span class="s">"form-control"</span><span class="na"> placeholder=</span><span class="s">"Enter ID"</span> <span class="nt">/&gt;</span>             
+                    <span class="nt">&lt;small&gt;&lt;form:errors </span><span class="na">path=</span><span class="s">"id"</span><span class="na"> cssClass=</span><span class="s">"errormsg"</span> <span class="nt">/&gt;&lt;/small&gt;</span>
+                 <span class="nt">&lt;/div&gt;</span>
+                 <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;label&gt;</span>Password:<span class="nt">&lt;/label&gt;&lt;form:password </span><span class="na">path=</span><span class="s">"pw"</span><span class="na"> size=</span><span class="s">"30"</span><span class="na"> cssClass=</span><span class="s">"form-control"</span><span class="na"> placeholder=</span><span class="s">"Enter password"</span> <span class="nt">/&gt;</span>
+                    <span class="nt">&lt;small&gt;&lt;form:errors </span><span class="na">path=</span><span class="s">"pw"</span><span class="na"> cssClass=</span><span class="s">"errormsg"</span> <span class="nt">/&gt;&lt;/small&gt;</span>
+                 <span class="nt">&lt;/div&gt;</span>
+                 <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"form-group"</span><span class="nt">&gt;</span>
+                    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">"submit"</span> <span class="na">class=</span><span class="s">"btn btn-primary"</span><span class="nt">&gt;</span>검증<span class="nt">&lt;/button&gt;</span>
+                 <span class="nt">&lt;/div&gt;</span>
+            <span class="nt">&lt;/form:form&gt;</span>
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<blockquote>
+  <h4 id="비밀번호의-길이가-안맞을-경우">비밀번호의 길이가 안맞을 경우</h4>
+</blockquote>
+
+<p><a href="https://3.bp.blogspot.com/-ziB_5KO_Ifc/XLHYso5wv1I/AAAAAAAABKI/D3bOFoRCxGo-euv6aHKrlGlR2xWGQE2AgCLcBGAs/s1600/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2019-04-13%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B9.37.56.png"><img src="https://3.bp.blogspot.com/-ziB_5KO_Ifc/XLHYso5wv1I/AAAAAAAABKI/D3bOFoRCxGo-euv6aHKrlGlR2xWGQE2AgCLcBGAs/s1600/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2019-04-13%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B9.37.56.png" alt="img" /></a></p>
+
+<blockquote>
+  <h4 id="아이디를-빈값을-넣을경우에도-메세지-설정을-하지-않아도-default-메세지가-출력된다">아이디를 빈값을 넣을경우에도 메세지 설정을 하지 않아도 default 메세지가 출력된다.</h4>
+</blockquote>
+
+<p><a href="https://1.bp.blogspot.com/-b0cS1VaY-Tc/XLHYse8jFyI/AAAAAAAABKE/417tD1jWY6s12ZPhiDqUQloFe4OvCynzACLcBGAs/s1600/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2019-04-13%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B9.38.08.png"><img src="https://1.bp.blogspot.com/-b0cS1VaY-Tc/XLHYse8jFyI/AAAAAAAABKE/417tD1jWY6s12ZPhiDqUQloFe4OvCynzACLcBGAs/s1600/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2019-04-13%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B9.38.08.png" alt="img" /></a></p>
+
+<p><a href="https://github.com/DaeAkin/ValidationTutorial/tree/withoutAnnotation">어노테이션을 사용하는 방법 깃허브 소스</a></p>
+
+<h2 id="validator-인터페이스-구현해서-만들기">Validator 인터페이스 구현해서 만들기</h2>
+
+<h3 id="스프링-설정-파일">스프링 설정 파일</h3>
+
+<p>root-context.xml에 다음의 빈을 추가해주세요.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;bean</span> <span class="na">id=</span><span class="s">"messageSource"</span>
+    <span class="na">class=</span><span class="s">"org.springframework.context.support.ReloadableResourceBundleMessageSource"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">"basename"</span> <span class="na">value=</span><span class="s">"/WEB-INF/message"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/bean&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">ReloadableResourceBundleMessageSource</code> 빈은 지정된 basename과 스프링의 <code class="language-plaintext highlighter-rouge">ApplicationContext</code> 의 리소스 로딩을 이용하여 리소스에 접근이 가능한 <code class="language-plaintext highlighter-rouge">MessageSource</code> 의 구현클래스 입니다.</p>
+
+<p>JDK 기반을 둔 <code class="language-plaintext highlighter-rouge">ResourceBundleMessageSource</code> 와 반대로, 이 클래스는 스프링의 리소스 핸들러부터 <code class="language-plaintext highlighter-rouge">PropertiesPersister</code> 방법을 통해 메세지를 위한 사용자 정의 데이터 <code class="language-plaintext highlighter-rouge">Properties</code> 인스턴스를 사용할 수 있습니다.</p>
+
+<p>전형적인 웹 어플리케이션에서 메시지 파일들은 WEB-INF 밑에 두어 사용하는데, 위에와 같이 <code class="language-plaintext highlighter-rouge">/WEB-INF/message</code> 로 설정하게 되면 <code class="language-plaintext highlighter-rouge">WEB-INF/message.properties</code> <code class="language-plaintext highlighter-rouge">WEB-INF/message.xml</code> <code class="language-plaintext highlighter-rouge">WEB-INF/message_en.xml</code> 등 모두 인식을 할 수 있습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">basename</code> 은 리소스 번들의 위치를 작성해야하며, <strong>반드시</strong> 작성해야하는 프로퍼티입니다.</p>
+
+<h3 id="메세지-리소스-파일">메세지 리소스 파일</h3>
+
+<p>이제 유효성 검사에러를 위한 메세지 파일을 하나 만들어 보겠습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">/WEB-INF/</code> 밑에 <code class="language-plaintext highlighter-rouge">message.properties</code> 를 생성하겠습니다.</p>
+
+<blockquote>
+  <h3 id="messageproperties">message.properties</h3>
+</blockquote>
+
+<div class="language-properties highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">## memberform.id ##
+</span><span class="py">member.id.empty</span> <span class="p">=</span> <span class="s">property : Insert ID!</span>
+ <span class="c">## memberform.pw ##
+</span><span class="py">member.pw.empty</span> <span class="p">=</span> <span class="s">property : Insert PW!</span>
+</code></pre></div></div>
+
+<blockquote>
+  <h3 id="memberdto-1">MemberDto</h3>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">kei890</span><span class="o">.</span><span class="na">validationtutorial</span><span class="o">.</span><span class="na">dto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Component</span><span class="o">;</span>
+
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemberDto</span> <span class="o">{</span>
+	
+	<span class="kt">int</span> <span class="n">no</span><span class="o">;</span>
+	<span class="nc">String</span> <span class="n">id</span><span class="o">;</span>
+	<span class="nc">String</span> <span class="n">pw</span><span class="o">;</span>
+	
+	<span class="kd">public</span> <span class="nf">MemberDto</span><span class="o">()</span> <span class="o">{</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">int</span> <span class="nf">getNo</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">no</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setNo</span><span class="o">(</span><span class="kt">int</span> <span class="n">no</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">no</span> <span class="o">=</span> <span class="n">no</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getId</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">id</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setId</span><span class="o">(</span><span class="nc">String</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">id</span> <span class="o">=</span> <span class="n">id</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">getPw</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="n">pw</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setPw</span><span class="o">(</span><span class="nc">String</span> <span class="n">pw</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">this</span><span class="o">.</span><span class="na">pw</span> <span class="o">=</span> <span class="n">pw</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">toString</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="s">"id : "</span> <span class="o">+</span> <span class="n">getId</span><span class="o">()</span> <span class="o">+</span> <span class="s">"\n pw :"</span> <span class="o">+</span> <span class="n">getPw</span><span class="o">();</span>
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>아까 변수에 적어줬었던 어노테이션만 제거했습니다.</p>
+
+<h3 id="validator-인터페이스-구현하기">Validator 인터페이스 구현하기</h3>
+
+<p>Validator 인터페이스를 구현하기 위해서 MemberValidator 클래스를 하나 생성해주세요</p>
+
+<blockquote>
+  <h3 id="membervalidator">MemberValidator</h3>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">kei890</span><span class="o">.</span><span class="na">validationtutorial</span><span class="o">.</span><span class="na">dto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.regex.Pattern</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Component</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.validation.Errors</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.validation.ValidationUtils</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.validation.Validator</span><span class="o">;</span>
+
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemberValidator</span> <span class="kd">implements</span> <span class="nc">Validator</span> <span class="o">{</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">supports</span><span class="o">(</span><span class="nc">Class</span><span class="o">&lt;?&gt;</span> <span class="n">clazz</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// 타입이 안맞으면 invalid target for Validator 오류가 뜬다!</span>
+		<span class="k">return</span> <span class="nc">MemberDto</span><span class="o">.</span><span class="na">class</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">clazz</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	<span class="nd">@Override</span>
+	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">validate</span><span class="o">(</span><span class="nc">Object</span> <span class="n">obj</span><span class="o">,</span> <span class="nc">Errors</span> <span class="n">error</span><span class="o">)</span> <span class="o">{</span>
+		<span class="nc">ValidationUtils</span><span class="o">.</span><span class="na">rejectIfEmpty</span><span class="o">(</span><span class="n">error</span><span class="o">,</span> <span class="s">"id"</span><span class="o">,</span> <span class="s">"member.id.empty"</span><span class="o">,</span><span class="s">"아이디를 입력해주세요."</span><span class="o">);</span>
+		<span class="nc">ValidationUtils</span><span class="o">.</span><span class="na">rejectIfEmpty</span><span class="o">(</span><span class="n">error</span><span class="o">,</span> <span class="s">"pw"</span><span class="o">,</span> <span class="s">"member.pw.empty"</span><span class="o">,</span><span class="s">"비밀번호를 입력해주세요"</span><span class="o">);</span>
+       
+        <span class="nc">MemberDto</span> <span class="n">memberDto</span> <span class="o">=</span> <span class="o">(</span><span class="nc">MemberDto</span><span class="o">)</span> <span class="n">obj</span><span class="o">;</span>
+		
+        	<span class="c1">//만약 이메일의 값을 검증하고싶다면 Pattern 클래스를 이용하자!</span>
+          <span class="nc">Pattern</span> <span class="n">pattern</span> <span class="o">=</span> <span class="nc">Pattern</span><span class="o">.</span><span class="na">compile</span><span class="o">(</span><span class="s">"^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$"</span><span class="o">,</span>
+                <span class="nc">Pattern</span><span class="o">.</span><span class="na">CASE_INSENSITIVE</span><span class="o">);</span>
+          <span class="k">if</span> <span class="o">(!(</span><span class="n">pattern</span><span class="o">.</span><span class="na">matcher</span><span class="o">(</span><span class="n">memberDto</span><span class="o">.</span><span class="na">getId</span><span class="o">()).</span><span class="na">matches</span><span class="o">()))</span> <span class="o">{</span>
+             <span class="n">err</span><span class="o">.</span><span class="na">rejectValue</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"member.email.invalid"</span><span class="o">);</span>
+          <span class="o">}</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Validator를 구현해준 클래스는 빈으로 등록해줘야 하기 때문에 자동으로 빈으로 등록되기 위해서 
+<code class="language-plaintext highlighter-rouge">@Component</code> 어노테이션을 붙여줬습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">supports(Class&lt;?&gt; clazz)</code> 에서 구현해줘야 할 것은, <strong>인자로 넘어온 클래스가 이 검증 클래스를 지원하는가?</strong> 입니다.
+보통 저렇게 쓰거나 , <code class="language-plaintext highlighter-rouge">MemberDto.class.isAssignableFrom(clazz);</code> 를 많이 사용합니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">validate(Object obj, Erros error)</code>에서 구현해줘야 할 것은 어떤걸 검증할 것인가? 를 작성해주면 됩니다.
+보통 ValidationUtils 스태틱 클래스를 이용해서 작성합니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">rejectIfEmpty</code> 는 오버로딩 메소드라서 원하는 메소드를 골라서 사용하면 됩니다.</p>
+
+<p>예제에서 사용했던 메소드는 인자가 4개짜리인데요, 
+첫번째 인자에는 그냥 error를 담아주고, 2번째 인자에는 필드이름을 적어줍니다.
+3번째 인자에는 message.properties에 적었던 이름을 적어주면 됩니다.
+4번째 인자에는 만약 3번째 인자의 값을 못찾을 경우 디폴트로 나타내줄 메세지를 적어주시면 됩니다.</p>
+
+<p>또한 넘어온 도메인의 값을 검증하고 싶다면 Pattern 클래스를 이용해서 해당 값을 검증을 할 수 있습니다.</p>
+
+<p><a href="https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/ValidationUtils.html">ValidationUtils</a></p>
+
+<p><a href="https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html">Pattern</a></p>
+
+<blockquote>
+  <h3 id="membercontroller-1">MemberController</h3>
+</blockquote>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">com</span><span class="o">.</span><span class="na">kei890</span><span class="o">.</span><span class="na">validationtutorial</span><span class="o">.</span><span class="na">controller</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">javax.validation.Valid</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Controller</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.ui.Model</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.validation.BindingResult</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.WebDataBinder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.InitBinder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.ModelAttribute</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.kei890.validationtutorial.dto.MemberDto</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.kei890.validationtutorial.dto.MemberValidator</span><span class="o">;</span>
+
+<span class="nd">@Controller</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MemberController</span> <span class="o">{</span>
+
+	<span class="nd">@Autowired</span>
+	<span class="nc">MemberValidator</span> <span class="n">memberValidator</span><span class="o">;</span>
+
+	<span class="nd">@InitBinder</span>
+	<span class="kd">protected</span> <span class="kt">void</span> <span class="nf">initBinder</span><span class="o">(</span><span class="nc">WebDataBinder</span> <span class="n">binder</span><span class="o">)</span> <span class="o">{</span>
+		<span class="n">binder</span><span class="o">.</span><span class="na">addValidators</span><span class="o">(</span><span class="n">memberValidator</span><span class="o">);</span>
+	<span class="o">}</span>
+
+	
+	<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">moveTestJsp</span><span class="o">(</span><span class="nc">Model</span> <span class="n">model</span><span class="o">)</span> <span class="o">{</span>
+		<span class="c1">// 빈 객체 넘겨줘야함.</span>
+		<span class="n">model</span><span class="o">.</span><span class="na">addAttribute</span><span class="o">(</span><span class="s">"memberDto"</span><span class="o">,</span> <span class="k">new</span> <span class="nc">MemberDto</span><span class="o">());</span>
+		<span class="k">return</span> <span class="s">"insert"</span><span class="o">;</span>
+	<span class="o">}</span>
+
+	<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/insert"</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="nc">String</span> <span class="nf">memberInsert</span><span class="o">(</span><span class="nd">@Valid</span> <span class="nd">@ModelAttribute</span> <span class="nc">MemberDto</span> <span class="n">memberDto</span><span class="o">,</span> <span class="nc">BindingResult</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"---- MemberController::memberInsert() ----"</span><span class="o">);</span>
+
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">memberDto</span><span class="o">.</span><span class="na">toString</span><span class="o">());</span>
+
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"오류가 있나요? : "</span> <span class="o">+</span> <span class="n">result</span><span class="o">.</span><span class="na">hasErrors</span><span class="o">());</span>
+
+		<span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">.</span><span class="na">hasErrors</span><span class="o">())</span> <span class="o">{</span>
+			<span class="c1">// form에 에러가 있으면</span>
+			<span class="k">return</span> <span class="s">"insert"</span><span class="o">;</span>
+		<span class="o">}</span>
+		<span class="c1">// 에러가 없으면</span>
+		<span class="k">return</span> <span class="s">""</span><span class="o">;</span>
+
+	<span class="o">}</span>
+
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>컨트롤러에서 앞에서 구현해준 <code class="language-plaintext highlighter-rouge">memberValidator</code>를 <u>DI</u> 해주고,
+<code class="language-plaintext highlighter-rouge">@initBinder</code> 어노테이션을 이용해서 validator를 추가해주면 정상적으로 동작을 합니다.</p>
+
+<p>index.jsp는 수정 없이 그대로 사용해도 됩니다.</p>
+
+<blockquote>
+  <h3 id="정상적으로-동작하는-모습">정상적으로 동작하는 모습</h3>
+</blockquote>
+
+<p><a href="https://4.bp.blogspot.com/-JI01uajSrUc/XLMiQaNU_GI/AAAAAAAABKU/OSonnYS0wRs8br_0cZb-9A4zL0c9jga7gCLcBGAs/s1600/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2019-04-14%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B9.04.50.png"><img src="https://4.bp.blogspot.com/-JI01uajSrUc/XLMiQaNU_GI/AAAAAAAABKU/OSonnYS0wRs8br_0cZb-9A4zL0c9jga7gCLcBGAs/s1600/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2019-04-14%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B9.04.50.png" alt="img" /></a></p>
+
+<p><a href="https://github.com/DaeAkin/ValidationTutorial/tree/validator">Validator 깃허브 소스</a></p>
+
+<h2 id="마치며">마치며</h2>
+
+<p>자바스크립트에서 유효성 검사를 하지만 자바스크립트의 유효성 검사만으로는 안됩니다.</p>
+
+<p>자바스크립트의 유효성 검사는 서버에 전송되는 횟수를 막아주는 것 일뿐,</p>
+
+<p>서버에서도 유효성 검사를 반드시 해주어야 합니다.</p>
+
+  </article>
+</div><!-- <div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/articles/2019-04/Spring%EC%97%90%EC%84%9C-validation-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/articles/2019-04/Spring%EC%97%90%EC%84%9C-validation-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/articles/2019-04/Spring%EC%97%90%EC%84%9C-validation-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=http://localhost:4000/articles/2019-04/Spring%EC%97%90%EC%84%9C-validation-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=http://localhost:4000/articles/2019-04/Spring%EC%97%90%EC%84%9C-validation-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons --> 
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'daeakin';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        <footer>
+  &copy; 2019 민동현 <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/js/main.js"></script>
+
+
+</body>
+</html>

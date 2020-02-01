@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="대회 or 인턴문제백준대학교에서는 대회에 나갈 때 2명의 여학생과 1명의 남학생이 팀을 결성해서 나가는 것이 원칙이다. (왜인지는 총장님께 여쭈어보는 것이 좋겠다.)백준대학교는 뛰어난 인재들이 많아 올해에도 N명의 여학생과 M명의 남학생이 팀원을 찾고 있다.그런데 올해에는 대회에 ...">
+  <meta name="keywords" content="민동현 and spring">
+  <meta name="author" content="백준 2875 | 민동현의 블로그">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f5">
+
+  <!-- Twitter Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="백준 2875 | 민동현의 블로그">
+  <meta name="twitter:description" content="대회 or 인턴문제백준대학교에서는 대회에 나갈 때 2명의 여학생과 1명의 남학생이 팀을 결성해서 나가는 것이 원칙이다. (왜인지는 총장님께 여쭈어보는 것이 좋겠다.)백준대학교는 뛰어난 인재들이 많아 올해에도 N명의 여학생과 M명의 남학생이 팀원을 찾고 있다.그런데 올해에는 대회에 ...">
+  
+    <meta property="twitter:image" content="http://localhost:4000/img/algorithm.jpg">
+  
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://localhost:4000/articles/2019-06/%EB%B0%B1%EC%A4%80-2875">
+  <meta property="og:title" content="백준 2875 | 민동현의 블로그">
+  <meta property="og:description" content="대회 or 인턴문제백준대학교에서는 대회에 나갈 때 2명의 여학생과 1명의 남학생이 팀을 결성해서 나가는 것이 원칙이다. (왜인지는 총장님께 여쭈어보는 것이 좋겠다.)백준대학교는 뛰어난 인재들이 많아 올해에도 N명의 여학생과 M명의 남학생이 팀원을 찾고 있다.그런데 올해에는 대회에 ...">
+  
+    <meta property="og:image" content="http://localhost:4000/img/algorithm.jpg">
+  
+  <title>백준 2875 | 민동현의 블로그</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="http://localhost:4000/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+
+  <link rel="canonical" href="http://localhost:4000/articles/2019-06/%EB%B0%B1%EC%A4%80-2875">
+  <link rel="alternate" type="application/rss+xml" title="민동현의 블로그" href="http://localhost:4000/feed.xml" />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <a href="http://localhost:4000/">
+    <img src="http://localhost:4000/img/profile.jpg" alt="" class="avatar">
+  </a>
+  
+  <a href="http://localhost:4000/" class="author_name">민동현</a>
+  <span class="author_job">Back End Developer</span>
+  <span class="author_bio mbm">JAVA 개발자</span>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="http://localhost:4000/">home</a>
+      </li>
+       
+      <li class="nav-item">
+        <a href="http://localhost:4000/archive/">Archive</a>
+      </li>
+          
+      <li class="nav-item">
+        <a href="http://localhost:4000/categories/">Categories</a>
+      </li>
+             
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  // based on http://stackoverflow.com/a/10300743/280842
+  function gen_mail_to_link(hs, subject) {
+    var lhs,rhs;
+    var p = hs.split('@');
+    lhs = p[0];
+    rhs = p[1];
+    document.write("<a class=\"social-link-item\" target=\"_blank\" href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\"><i class=\"fa fa-fw fa-envelope\"></i><\/a>");
+  }
+</script>
+<div class="social-links">
+  <ul>
+    
+      <li>
+      <script>gen_mail_to_link('mindh890@gmail.com', 'Hello from website');</script>
+      </li>
+    
+    
+    
+    
+    <li><a href="http://linkedin.com/in/동현-민-736913183" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    
+    <li><a href="http://github.com/DaeAkin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="https://t.me/DonghyeonMin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-telegram"></i></a></li>
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "http://localhost:4000/" >
+  Home
+</a>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "http://localhost:4000/img/algorithm.jpg"
+  
+  alt="백준 2875 feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="백준 2875">백준 2875</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        5 JUN 2019
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    3 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h1 id="대회-or-인턴">대회 or 인턴</h1>
+
+<h2 id="문제">문제</h2>
+
+<p>백준대학교에서는 대회에 나갈 때 2명의 여학생과 1명의 남학생이 팀을 결성해서 나가는 것이 원칙이다. (왜인지는 총장님께 여쭈어보는 것이 좋겠다.)</p>
+
+<p>백준대학교는 뛰어난 인재들이 많아 올해에도 N명의 여학생과 M명의 남학생이 팀원을 찾고 있다.</p>
+
+<p>그런데 올해에는 대회에 참여하려는 학생들 중 K명을 반드시 인턴쉽 프로그램에 참여하라는 학교의 방침이 생기게 되었다. 인턴쉽에 참여하는 학생은 대회에 참여하지 못한다.</p>
+
+<p>백준대학교에서는 뛰어난 인재들이 많기 때문에, 많은 팀을 만드는 것이 최선이다.</p>
+
+<p>여러분은 N명의 여학생과 M명의 남학생, K명의 인턴쉽에 참여해야하는 인원이 주어질 때 만들 수 있는 최대의 팀 수를 구하면 된다.</p>
+
+<h2 id="입력">입력</h2>
+
+<p>첫째 줄에 N, M, K가 순서대로 주어진다. (0 ≤ M ≤ 100), (0 ≤ N ≤ 100), (0 ≤ K ≤ M+N),</p>
+
+<h2 id="출력">출력</h2>
+
+<p>만들 수 있는 팀의 최댓값을 출력하면 된다.</p>
+
+<h2 id="예제-입력-1">예제 입력 1</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>6 3 2
+</code></pre></div></div>
+
+<h2 id="예제-출력-1">예제 출력 1</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2
+</code></pre></div></div>
+
+<h2 id="해설">해설</h2>
+
+<ul>
+  <li>첫번 째 케이스 : 여자의 수가 월등히 많은 경우는 여자들만 인턴을 간다.</li>
+  <li>두번 째 케이스 : 남자의 수가 월등히 많은 경우 남자들만 인턴을 간다.</li>
+  <li>세번 째 케이스 : 밸런스가 맞는 경우 골고루 빼준다.</li>
+</ul>
+
+<p>이렇게 세개의 케이스 경우만 계산해서 가장 많은 팀이 나온 배열의 방을 출력해주면 됩니다.</p>
+
+<h2 id="해답">해답</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">baekjoon</span><span class="o">;</span>
+
+
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Problem2875</span> <span class="o">{</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">IOException</span> <span class="o">{</span>
+		
+		<span class="nc">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nc">InputStreamReader</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+
+		<span class="nc">String</span><span class="o">[]</span> <span class="n">str</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">().</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span>
+		<span class="c1">//여학생</span>
+		<span class="kt">int</span> <span class="no">N</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">str</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+		<span class="c1">//남학생</span>
+		<span class="kt">int</span> <span class="no">M</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">str</span><span class="o">[</span><span class="mi">1</span><span class="o">]);</span>
+		<span class="c1">// 인턴쉽 참가 학생 수</span>
+		<span class="kt">int</span> <span class="no">K</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">str</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
+		<span class="c1">// 여학생 팀</span>
+		<span class="kt">int</span> <span class="nc">NTeam</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="c1">//남학생 팀 </span>
+		<span class="kt">int</span> <span class="nc">MTeam</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="c1">// 8 5 3 : 3팀 </span>
+		<span class="c1">//8 5 1 : 4팀</span>
+		<span class="c1">//18 4 1 : 4팀</span>
+		<span class="c1">//18 3 5 : 3팀</span>
+		<span class="kt">int</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>
+		
+		
+		<span class="c1">// 여학생에서만 인턴쉽 인원 빼기</span>
+		<span class="nc">NTeam</span> <span class="o">=</span> <span class="o">(</span><span class="no">N</span><span class="o">-</span><span class="no">K</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+		<span class="nc">MTeam</span> <span class="o">=</span> <span class="no">M</span><span class="o">;</span>
+		<span class="n">result</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="nc">NTeam</span> <span class="o">&gt;=</span> <span class="nc">MTeam</span> <span class="o">?</span> <span class="nc">MTeam</span> <span class="o">:</span> <span class="nc">NTeam</span><span class="o">;</span>
+
+		<span class="c1">// 남학생에서만 인턴쉽 인원 빼기</span>
+		<span class="nc">NTeam</span> <span class="o">=</span> <span class="o">(</span><span class="no">N</span><span class="o">)</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+		<span class="nc">MTeam</span> <span class="o">=</span> <span class="no">M</span><span class="o">-</span><span class="no">K</span><span class="o">;</span>
+		
+		<span class="n">result</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">=</span> <span class="nc">NTeam</span> <span class="o">&gt;=</span> <span class="nc">MTeam</span> <span class="o">?</span> <span class="nc">MTeam</span> <span class="o">:</span> <span class="nc">NTeam</span><span class="o">;</span>
+		
+		<span class="kt">int</span> <span class="n">aa</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+		<span class="c1">// 둘다 인턴쉽 인원 빼기</span>
+		<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="no">K</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+			<span class="nc">NTeam</span> <span class="o">=</span> <span class="o">(</span><span class="no">N</span><span class="o">-</span><span class="n">i</span><span class="o">)/</span> <span class="mi">2</span><span class="o">;</span>
+			<span class="nc">MTeam</span> <span class="o">=</span> <span class="o">(</span><span class="no">M</span><span class="o">-</span><span class="no">K</span><span class="o">+</span><span class="n">i</span><span class="o">);</span>
+			
+			<span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="nc">NTeam</span> <span class="o">&gt;=</span> <span class="nc">MTeam</span> <span class="o">?</span> <span class="nc">MTeam</span> <span class="o">:</span> <span class="nc">NTeam</span><span class="o">;</span>
+		
+			<span class="n">aa</span> <span class="o">=</span> <span class="n">aa</span> <span class="o">&gt;=</span> <span class="n">temp</span> <span class="o">?</span> <span class="n">aa</span> <span class="o">:</span> <span class="n">temp</span><span class="o">;</span>
+			<span class="n">result</span><span class="o">[</span><span class="mi">2</span><span class="o">]</span> <span class="o">=</span> <span class="n">aa</span><span class="o">;</span>
+		<span class="o">}</span>		
+		<span class="nc">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">result</span><span class="o">);</span>
+		<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">result</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+
+  </article>
+</div><!-- <div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/articles/2019-06/%EB%B0%B1%EC%A4%80-2875" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/articles/2019-06/%EB%B0%B1%EC%A4%80-2875" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/articles/2019-06/%EB%B0%B1%EC%A4%80-2875" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=http://localhost:4000/articles/2019-06/%EB%B0%B1%EC%A4%80-2875" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=http://localhost:4000/articles/2019-06/%EB%B0%B1%EC%A4%80-2875" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons --> 
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'daeakin';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        <footer>
+  &copy; 2019 민동현 <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/js/main.js"></script>
+
+
+</body>
+</html>

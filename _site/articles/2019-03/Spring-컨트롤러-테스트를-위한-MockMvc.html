@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="시작하기 전이 글은 JUnit Test 및 Mock에 대한 이해도가 있으신 분들에게만 추천 드립니다.만약 없으시다면 Junit 및 Mock에 대한 글을 먼저 읽어보시는 걸 추천 드립니다.MockMvc스프링의 컨트롤러를 테스트하기 위해서는 해당 URL 호출해서 파라미터 값을 같이 전...">
+  <meta name="keywords" content="민동현 and spring">
+  <meta name="author" content="MockMvc | 민동현의 블로그">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f5">
+
+  <!-- Twitter Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MockMvc | 민동현의 블로그">
+  <meta name="twitter:description" content="시작하기 전이 글은 JUnit Test 및 Mock에 대한 이해도가 있으신 분들에게만 추천 드립니다.만약 없으시다면 Junit 및 Mock에 대한 글을 먼저 읽어보시는 걸 추천 드립니다.MockMvc스프링의 컨트롤러를 테스트하기 위해서는 해당 URL 호출해서 파라미터 값을 같이 전...">
+  
+    <meta property="twitter:image" content="http://localhost:4000/img/leonids-logo.png">
+  
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://localhost:4000/articles/2019-03/Spring-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EC%9C%84%ED%95%9C-MockMvc">
+  <meta property="og:title" content="MockMvc | 민동현의 블로그">
+  <meta property="og:description" content="시작하기 전이 글은 JUnit Test 및 Mock에 대한 이해도가 있으신 분들에게만 추천 드립니다.만약 없으시다면 Junit 및 Mock에 대한 글을 먼저 읽어보시는 걸 추천 드립니다.MockMvc스프링의 컨트롤러를 테스트하기 위해서는 해당 URL 호출해서 파라미터 값을 같이 전...">
+  
+    <meta property="og:image" content="http://localhost:4000/img/leonids-logo.png">
+  
+  <title>MockMvc | 민동현의 블로그</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="http://localhost:4000/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+
+  <link rel="canonical" href="http://localhost:4000/articles/2019-03/Spring-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EC%9C%84%ED%95%9C-MockMvc">
+  <link rel="alternate" type="application/rss+xml" title="민동현의 블로그" href="http://localhost:4000/feed.xml" />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <a href="http://localhost:4000/">
+    <img src="http://localhost:4000/img/profile.jpg" alt="" class="avatar">
+  </a>
+  
+  <a href="http://localhost:4000/" class="author_name">민동현</a>
+  <span class="author_job">Back End Developer</span>
+  <span class="author_bio mbm">JAVA 개발자</span>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="http://localhost:4000/">home</a>
+      </li>
+       
+      <li class="nav-item">
+        <a href="http://localhost:4000/archive/">Archive</a>
+      </li>
+          
+      <li class="nav-item">
+        <a href="http://localhost:4000/categories/">Categories</a>
+      </li>
+             
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  // based on http://stackoverflow.com/a/10300743/280842
+  function gen_mail_to_link(hs, subject) {
+    var lhs,rhs;
+    var p = hs.split('@');
+    lhs = p[0];
+    rhs = p[1];
+    document.write("<a class=\"social-link-item\" target=\"_blank\" href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\"><i class=\"fa fa-fw fa-envelope\"></i><\/a>");
+  }
+</script>
+<div class="social-links">
+  <ul>
+    
+      <li>
+      <script>gen_mail_to_link('mindh890@gmail.com', 'Hello from website');</script>
+      </li>
+    
+    
+    
+    
+    <li><a href="http://linkedin.com/in/동현-민-736913183" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    
+    <li><a href="http://github.com/DaeAkin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="https://t.me/DonghyeonMin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-telegram"></i></a></li>
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "http://localhost:4000/" >
+  Home
+</a>
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="MockMvc">MockMvc</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        28 MAR 2019
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    7 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h2 id="시작하기-전">시작하기 전</h2>
+
+<p>이 글은 JUnit Test 및 Mock에 대한 이해도가 있으신 분들에게만 추천 드립니다.</p>
+
+<p>만약 없으시다면 Junit 및 Mock에 대한 글을 먼저 읽어보시는 걸 추천 드립니다.</p>
+
+<h2 id="mockmvc">MockMvc</h2>
+
+<p>스프링의 컨트롤러를 테스트하기 위해서는 해당 URL 호출해서 파라미터 값을 같이 전송해주고,
+컨트롤러에서 쓰는 라이브러리 주입 등, 준비할 과정이 많습니다.</p>
+
+<p>그렇게 해서 나온 것이 MockMvc는 서버사이드인 Spring MVC 테스트를 도와주는 프레임워크입니다.</p>
+
+<p>Spring에서 MVC패턴으로 작성한 프로그램의 컨트롤러를 시작해서 테스트를 해주는 프레임워크입니다.</p>
+
+<h2 id="필수라이브러리">필수라이브러리</h2>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.jayway.jsonpath<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>json-path<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>2.2.0<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">.andExpect(Json)</code> 에서 Json값을 가지고 사용하기 떄문에 필요합니다.</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>org.mockito<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>mockito-all<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.9.5<span class="nt">&lt;/version&gt;</span>
+    <span class="nt">&lt;scope&gt;</span>test<span class="nt">&lt;/scope&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div></div>
+
+<p><strong>MockMvc를</strong> 사용하기 위해서 필요합니다.</p>
+
+<h2 id="선언하기">선언하기</h2>
+
+<p>이 프레임워크를 사용하기 위해서는 <strong>Mockmvc</strong> 타입의 변수가 하나 필요합니다.</p>
+
+<p>다음과 같이 선언해주세요.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">private</span> <span class="nc">MockMvc</span> <span class="n">mockMvc</span><span class="o">;</span>
+</code></pre></div></div>
+
+<h2 id="초기화하기">초기화하기</h2>
+
+<p>이제 이변수를 <strong><u>초기화</u></strong>를 해줘야 사용할 수 있습니다.</p>
+
+<p>스태틱 클래스인 <strong>MockMvcBuilders</strong> 를 이용하여 초기화를 해줄 수 있습니다.</p>
+
+<p><strong>MockMvcBuilder</strong> 클래스에는 두가지 메소드를 이용해 초기화를 해줄 수 있습니다.</p>
+
+<ul>
+  <li>
+    <p><strong>static StandaloneMockMvcBuilder standaloneSetup(java.lang.Object… controllers)</strong> : 
+@Controller 어노테이션이 붙은 클래스를 등록하고 Spring MVC 인프라를 설정하여 MockMvc를 만듭니다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mockMvc</span> <span class="o">=</span> <span class="nc">MockMvcBuilders</span>
+        <span class="o">.</span><span class="na">standaloneSetup</span><span class="o">(</span><span class="n">memberController</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>static DefaultMockMvcBuilder webAppContextSetup(WebApplicationContext context) :</strong> WebApplicationContext를 가지고 MockMvc를 초기화 합니다.</p>
+  </li>
+  <li>
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nc">WebApplicationContext</span> <span class="n">wac</span> <span class="o">=</span> <span class="o">...;</span>
+  
+ <span class="nc">MockMvc</span> <span class="n">mockMvc</span> <span class="o">=</span> <span class="n">webAppContextSetup</span><span class="o">(</span><span class="n">wac</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+</code></pre></div></div>
+
+<p>이 중에 <code class="language-plaintext highlighter-rouge">standaloneSetup(java.lang.Object... controllers)</code> 를 좀더 살펴보겠습니다.</p>
+
+<p>이 메소드는 리턴값이 <strong><u>StandaloneMockMvcBuilder</u></strong> 이며 빌더패턴을 이용하고 있습니다.
+또한 이 클래스를 이용하여 컨트롤러에 <u>인터셉터</u>를 추가하여 테스트하거나, <u>필터추가</u>, <u>어드바이스</u> 추가등
+조금 더 세밀한 컨트롤러테스트를 가능하게 해줍니다.</p>
+
+<p>그 중에서 몇개의 메소드만 살펴보겠습니다.</p>
+
+<h3 id="standalonesetup-메소드">StandaloneSetup 메소드</h3>
+
+<ul>
+  <li><strong>StandaloneMockMvcBuilder addInterceptor(HandlerInterceptor… interceptors)</strong> : 인터셉터를 추가하는 메소드입니다.</li>
+  <li><strong>StandaloneMockMvcBuilder setViewResolvers(ViewResolver… resolvers)</strong> : 어떤 ViewResolver를 사용할건지 셋팅합니다.</li>
+</ul>
+
+<p>여기서 중요한건 <strong>StandaloneMockMvcBuilder</strong> 클래스는 <strong><u>AbstractMockMvcBuilder를</u></strong> extends 했기 때문에 
+<strong>AbstractMockMvcBuilder</strong> 클래스에 있는 메소드를 사용할 수 있는데, 여기에 <u>FIlter</u>를 추가하는 메소드가 있습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Before</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">setUp</span><span class="o">()</span> <span class="o">{</span>
+    <span class="n">mockMvc</span> <span class="o">=</span> <span class="nc">MockMvcBuilders</span>
+            <span class="o">.</span><span class="na">standaloneSetup</span><span class="o">(</span><span class="n">memberController</span><span class="o">)</span>
+             <span class="o">.</span><span class="na">addFilters</span><span class="o">(</span><span class="k">new</span> <span class="nc">CORSFilter</span><span class="o">())</span>
+            <span class="o">.</span><span class="na">build</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/setup/StandaloneMockMvcBuilder.html">StandaloneMockMvcBuilder</a></p>
+
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/setup/AbstractMockMvcBuilder.html">AbstractMockMvcBuilder</a></p>
+
+<h2 id="mockmvc-이용하기">MockMvc 이용하기</h2>
+
+<h3 id="mockmvc의-메소드">MockMvc의 메소드</h3>
+
+<ul>
+  <li><strong>DispatcherServlet getDispatcherServlet()</strong> : MockMvc와 함께 초기화된 <strong>DispatcherServlet</strong>을 리턴합니다. 핸들링 요청이 런타임 시 DispatcherServlet에게 위임하기 때문에 커스텀 핸들링 요청을 사용할 때는 Dispatcher를 함께 주입해줘야 합니다.</li>
+  <li><strong>ResultActions perform(RequestBuilder requestBuilder)</strong> : 요청을 수행하고 액션들을 체인으로 연결해서 예상 값이나 결과값을 리턴받습니다.</li>
+</ul>
+
+<p>perfomr 메소드는 인자로 <strong><u>RequestBuilder 인터페이스</u></strong>를 구현한 것들을 넣어줘야합니다.
+<code class="language-plaintext highlighter-rouge">RequestBuilders</code>의 스태틱 팩토리 메소드인 <code class="language-plaintext highlighter-rouge">MockMvcRequestBilders</code>를 사용하면 됩니다.</p>
+
+<h3 id="mockmvcrequestbuilders의-메소드">MockMvcRequestBuilders의 메소드</h3>
+
+<p>자주 사용되는 메소드 몇개만 살펴보겠습니다.</p>
+
+<ul>
+  <li><strong>MockHttpServletRequestBuilder get(java.lang.String urlTemplate)</strong> : Get 방식의 request를 만들어 요청을 해줍니다.</li>
+  <li><strong>MockHttpServletRequestBuilder post(java.lang.String urlTemplate)</strong> : Post 방식의 request를 만들어 요청을 해줍니다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">memberLogin</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="c1">// /member/login 에게 POST 방식으로 요청합니다.</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/member/login"</span><span class="o">))</span>		
+<span class="o">}</span> 
+</code></pre></div></div>
+
+<p>get() 과 post()는 <strong><u>MockHttpServletRequestBuilder</u></strong> 를 리턴하기 때문에 
+<strong>MockHttpServletRequestBuilder</strong> 의 함수들을 체인형식으로 이어 붙일 수 있습니다.</p>
+
+<p>위에 소스에서 post 방식으로 해당 url로 요청하는 동시에 <u>paramter</u>도 같이 넘겨 주겠습니다.</p>
+
+<p>바로 아래에 있는 메소드를 사용하면 됩니다.</p>
+
+<ul>
+  <li>
+    <p><strong>MockHttpServletRequestBuilder param(java.lang,String name, java.lang.String… values)</strong> : MockHttpServletRequest에 request paramter를 추가합니다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">memberLogin</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+        <span class="c1">// /member/login 에게 POST 방식으로 요청합니다.</span>
+        <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/member/login"</span><span class="o">)</span>		
+                    <span class="o">.</span><span class="na">param</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"testid"</span><span class="o">)</span>
+					<span class="o">.</span><span class="na">param</span><span class="o">(</span><span class="s">"pw"</span><span class="o">,</span> <span class="s">"1234"</span><span class="o">))</span>
+<span class="o">}</span> 
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>MockHttpServletRequestBuilder session(MockHttpSession session)</strong> : 재사용이 가능한 HTTP session을 설정합니다.</p>
+  </li>
+  <li>
+    <p><strong>MockHttpServletRequestBuilder accept(java.lang.String… mediaTypes</strong>) : ‘Accept’ 헤더를 설정해줍니다.</p>
+  </li>
+</ul>
+
+<p>이 함수 외에도 많은 메소드들이 많아 API 문서를 보고 사용하면 됩니다.</p>
+
+<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/request/MockHttpServletRequestBuilder.html">MockHttpServletRequestBuilder</a></p>
+
+<p><code class="language-plaintext highlighter-rouge">perform()</code> 함수를 다시 보겠습니다. <code class="language-plaintext highlighter-rouge">ResultActions perform(RequestBuilder requestBuilder)</code>
+<code class="language-plaintext highlighter-rouge">perform()</code> 함수는 리턴 값이 <strong><u>ResultActions</u></strong> <code class="language-plaintext highlighter-rouge">Interface</code> 입니다.</p>
+
+<h3 id="resultactions의-메소드">ResultActions의 메소드</h3>
+
+<p><strong>ResultActions</strong> 인터페이스는 3개의 메소드로 구성되어 있습니다.</p>
+
+<ul>
+  <li><strong>ResultActions andDo(ResultHandler handler)</strong> : 어떤 동작을 수행할때 사용합니다.</li>
+  <li><strong>ResultActions andExpect(ResultMatcher matcher)</strong> : 결과값을 예상합니다.</li>
+  <li><strong>MvcResult andReturn()</strong> : 요청을 실행한 결과를 MvcReesult 타입으로 리턴합니다.</li>
+</ul>
+
+<p><strong>ResultActions</strong>의 함수 <code class="language-plaintext highlighter-rouge">andDo()</code> 와 <code class="language-plaintext highlighter-rouge">andExpect()</code> 는 ResultActions을 리턴하므로 체인형식으로 이어 붙일 수 있습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">memberLogin</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span>
+	<span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/member/login"</span><span class="o">)</span>
+					<span class="o">.</span><span class="na">param</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"testid"</span><span class="o">)</span>
+					<span class="o">.</span><span class="na">param</span><span class="o">(</span><span class="s">"pw"</span><span class="o">,</span> <span class="s">"1234"</span><span class="o">))</span>
+			<span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="kc">null</span><span class="o">)</span>
+			<span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="kc">null</span><span class="o">);</span>
+<span class="o">}</span>		
+</code></pre></div></div>
+
+<p>지금은 보여드리기 위해서 파라미터 값으로 null 값을 줬습니다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">andDo()</code> 함수는 파라미터를 <strong><u>ResultHandler</u></strong> <code class="language-plaintext highlighter-rouge">Interface</code> 를 구현한 클래스를 받습니다.</p>
+
+<p><strong>MockMvcResultHandlers</strong> 클래스를 사용하면 됩니다.</p>
+
+<ul>
+  <li>
+    <p><strong>ResultHandler log()</strong></p>
+  </li>
+  <li>
+    <p><strong>ResultHandler print()</strong></p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/member/login"</span><span class="o">)</span>
+				<span class="o">.</span><span class="na">param</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"testid"</span><span class="o">)</span>
+				<span class="o">.</span><span class="na">param</span><span class="o">(</span><span class="s">"pw"</span><span class="o">,</span> <span class="s">"1234"</span><span class="o">))</span>
+				<span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">())</span>
+</code></pre></div>    </div>
+
+    <h5 id="output">Output</h5>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>MockHttpServletRequest:
+      HTTP Method = POST
+      Request URI = /member/login
+       Parameters = {id=[testid], pw=[1234]}
+          Headers = {}
+  
+Handler:
+             Type = com.www.homedoc.controller.MemberController
+           Method = public java.util.Map&lt;java.lang.String, java.lang.Object&gt; com.www.homedoc.controller.MemberController.memberLogin(java.util.Map&lt;java.lang.String, java.lang.Object&gt;,javax.servlet.http.HttpSession)
+  
+Async:
+    Async started = false
+     Async result = null
+  
+Resolved Exception:
+             Type = null
+  
+ModelAndView:
+        View name = null
+             View = null
+            Model = null
+  
+FlashMap:
+       Attributes = null
+  
+MockHttpServletResponse:
+           Status = 200
+    Error message = null
+          Headers = {Content-Type=[application/json;charset=UTF-8]}
+     Content type = application/json;charset=UTF-8
+             Body = {"code":"OK"}
+    Forwarded URL = null
+   Redirected URL = null
+          Cookies = []
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>ResultHandler print(java.io.OutputStream stream)</strong></p>
+  </li>
+  <li>
+    <p><strong>ResultHandler print(java.io.Writer writer)</strong></p>
+  </li>
+</ul>
+
+<p><code class="language-plaintext highlighter-rouge">andExpect()</code> 함수는 파라미터를 <strong><u>ResultMatcher</u></strong>  <code class="language-plaintext highlighter-rouge">Interface</code> 를 구현한 클래스를 받습니다.</p>
+
+<p><strong>MockMvcResultMatchers</strong> 클래스를 사용하면 됩니다.
+메소드들이 많은데 그중 몇개만 살펴 보겠습니다.</p>
+
+<ul>
+  <li>
+    <p><strong>StatusResultMatchers status()</strong> : 응답 상태를 검증해줍니다 (예를들어 응답코드가 정상인지(200))</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/member/login"</span><span class="o">)</span>
+					<span class="o">.</span><span class="na">param</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"testid"</span><span class="o">)</span>
+					<span class="o">.</span><span class="na">param</span><span class="o">(</span><span class="s">"pw"</span><span class="o">,</span> <span class="s">"1234"</span><span class="o">))</span>
+					<span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">())</span>
+					<span class="c1">//리다이렉트 응답코드는 302</span>
+					<span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">is</span><span class="o">(</span><span class="mi">302</span><span class="o">))</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>ModelResultMatchers model()</strong> : 모델에 접근해서 모델객체에 대한 검증을 합니다.</p>
+  </li>
+  <li>
+    <p><strong>ResultMatcher redirectedUrl(java.lang.String expectedUrl)</strong> : 해당 url로 정상적으로 리다이렉트 되었는지 검증합니다.</p>
+  </li>
+  <li>
+    <p><strong>&lt;T&gt; ResultMatcher jsonPath(java.lang.String expression, Matcher&lt;T&gt; matcher)</strong> : JsonPath 표현식을 이용하여 response body에 접근하여 검증하고 찾은 JSON 값을 검증하는 방법으로  Hamcrest matcher를 이용합니다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">jsonPath</span><span class="o">(</span><span class="s">"$.code"</span><span class="o">,</span> <span class="n">is</span><span class="o">(</span><span class="s">"OK"</span><span class="o">)))</span>
+</code></pre></div>    </div>
+
+    <p><code class="language-plaintext highlighter-rouge">$.Json의 키</code> <code class="language-plaintext highlighter-rouge">is("Json의 값 ")</code> 으로 사용하시면 됩니다.</p>
+  </li>
+</ul>
+
+<p>이제 <code class="language-plaintext highlighter-rouge">andReturn()</code> 함수를 이용해서 MvcResult 타입으로 리턴해주겠습니다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">MvcResult</span> <span class="n">result</span> <span class="o">=</span>
+            <span class="n">mockMvc</span><span class="o">.</span><span class="na">perform</span><span class="o">(</span><span class="n">post</span><span class="o">(</span><span class="s">"/member/login"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">param</span><span class="o">(</span><span class="s">"id"</span><span class="o">,</span> <span class="s">"testid"</span><span class="o">)</span>
+                <span class="o">.</span><span class="na">param</span><span class="o">(</span><span class="s">"pw"</span><span class="o">,</span> <span class="s">"1234"</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andDo</span><span class="o">(</span><span class="n">print</span><span class="o">())</span>
+                <span class="c1">//리다이렉트 응답코드는 302</span>
+                <span class="o">.</span><span class="na">andExpect</span><span class="o">(</span><span class="n">status</span><span class="o">().</span><span class="na">is</span><span class="o">(</span><span class="mi">302</span><span class="o">))</span>
+                <span class="o">.</span><span class="na">andReturn</span><span class="o">();</span>
+</code></pre></div></div>
+
+<h3 id="mvcresult-메소드">MvcResult 메소드</h3>
+
+<p>MvcResult의 메소드를 몇개만 다뤄보겠습니다.</p>
+
+<ul>
+  <li>
+    <p><strong>HandlerInterceptor[] getInterceptors()</strong> : 핸들러에 있는 인터셉터들을 리턴합니다.</p>
+  </li>
+  <li>
+    <p><strong>ModelAndView getModelAndView()</strong> : 핸들러에 의해 준비된 ModelAndView를 리턴합니다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">ModelAndView</span> <span class="n">mav</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getModelAndView</span><span class="o">();</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>MockHttpServletRequest getRequest()</strong> : perform함수를 실행하고 난 request 객체를 리턴합니다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nc">MockHttpServletRequest</span> <span class="n">request</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="na">getRequest</span><span class="o">();</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p><strong>MockHttpServletResponse getResponse()</strong> : 응답 결과를 리턴합니다.</p>
+  </li>
+</ul>
+
+<p>MvcResult의 함수를 호출해서 원하는 객체를 받은 후 그 객체를 이용해서 효과적인 검증을 할 수 있습니다.</p>
+
+
+  </article>
+</div><!-- <div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/articles/2019-03/Spring-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EC%9C%84%ED%95%9C-MockMvc" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/articles/2019-03/Spring-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EC%9C%84%ED%95%9C-MockMvc" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/articles/2019-03/Spring-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EC%9C%84%ED%95%9C-MockMvc" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=http://localhost:4000/articles/2019-03/Spring-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EC%9C%84%ED%95%9C-MockMvc" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=http://localhost:4000/articles/2019-03/Spring-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC-%ED%85%8C%EC%8A%A4%ED%8A%B8%EB%A5%BC-%EC%9C%84%ED%95%9C-MockMvc" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons --> 
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'daeakin';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        <footer>
+  &copy; 2019 민동현 <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/js/main.js"></script>
+
+
+</body>
+</html>

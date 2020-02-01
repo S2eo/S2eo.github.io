@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="백준 4344번 : 평균은 넘겠지정답package baekjoon;import java.util.Scanner;public class Problem4344 {    // 점수의 갯수    static int total;    // 점수의 합    static int totalSco...">
+  <meta name="keywords" content="민동현 and spring">
+  <meta name="author" content="백준 4344 | 민동현의 블로그">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f5f5">
+
+  <!-- Twitter Tags -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="백준 4344 | 민동현의 블로그">
+  <meta name="twitter:description" content="백준 4344번 : 평균은 넘겠지정답package baekjoon;import java.util.Scanner;public class Problem4344 {    // 점수의 갯수    static int total;    // 점수의 합    static int totalSco...">
+  
+    <meta property="twitter:image" content="http://localhost:4000/img/algorithm.jpg">
+  
+
+  <!-- Open Graph Tags -->
+  <meta property="og:type" content="blog">
+  <meta property="og:url" content="http://localhost:4000/articles/2018-11/%EB%B0%B1%EC%A4%80-4344%EB%B2%88-%ED%8F%89%EA%B7%A0%EC%9D%80-%EB%84%98%EA%B2%A0%EC%A7%80">
+  <meta property="og:title" content="백준 4344 | 민동현의 블로그">
+  <meta property="og:description" content="백준 4344번 : 평균은 넘겠지정답package baekjoon;import java.util.Scanner;public class Problem4344 {    // 점수의 갯수    static int total;    // 점수의 합    static int totalSco...">
+  
+    <meta property="og:image" content="http://localhost:4000/img/algorithm.jpg">
+  
+  <title>백준 4344 | 민동현의 블로그</title>
+
+  <!-- CSS files -->
+  <link rel="stylesheet" href="http://localhost:4000/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://localhost:4000/css/main.css">
+
+  <link rel="canonical" href="http://localhost:4000/articles/2018-11/%EB%B0%B1%EC%A4%80-4344%EB%B2%88-%ED%8F%89%EA%B7%A0%EC%9D%80-%EB%84%98%EA%B2%A0%EC%A7%80">
+  <link rel="alternate" type="application/rss+xml" title="민동현의 블로그" href="http://localhost:4000/feed.xml" />
+
+  <!-- Icons -->
+  <!-- 16x16 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+  <!-- 32x32 -->
+  <link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+</head>
+
+
+<body>
+  <div class="row">
+    <div class="col s12 m3">
+      <div class="table cover">
+        
+
+<div class="cover-card table-cell table-middle">
+  
+  <a href="http://localhost:4000/">
+    <img src="http://localhost:4000/img/profile.jpg" alt="" class="avatar">
+  </a>
+  
+  <a href="http://localhost:4000/" class="author_name">민동현</a>
+  <span class="author_job">Back End Developer</span>
+  <span class="author_bio mbm">JAVA 개발자</span>
+  <nav class="nav">
+    <ul class="nav-list">
+      <li class="nav-item">
+        <a href="http://localhost:4000/">home</a>
+      </li>
+       
+      <li class="nav-item">
+        <a href="http://localhost:4000/archive/">Archive</a>
+      </li>
+          
+      <li class="nav-item">
+        <a href="http://localhost:4000/categories/">Categories</a>
+      </li>
+             
+    </ul>
+  </nav>
+  <script type="text/javascript">
+  // based on http://stackoverflow.com/a/10300743/280842
+  function gen_mail_to_link(hs, subject) {
+    var lhs,rhs;
+    var p = hs.split('@');
+    lhs = p[0];
+    rhs = p[1];
+    document.write("<a class=\"social-link-item\" target=\"_blank\" href=\"mailto");
+    document.write(":" + lhs + "@");
+    document.write(rhs + "?subject=" + subject + "\"><i class=\"fa fa-fw fa-envelope\"></i><\/a>");
+  }
+</script>
+<div class="social-links">
+  <ul>
+    
+      <li>
+      <script>gen_mail_to_link('mindh890@gmail.com', 'Hello from website');</script>
+      </li>
+    
+    
+    
+    
+    <li><a href="http://linkedin.com/in/동현-민-736913183" class="social-link-item" target="_blank"><i class="fa fa-fw fa-linkedin"></i></a></li>
+    
+    
+    
+    
+    <li><a href="http://github.com/DaeAkin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-github"></i></a></li>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <li><a href="https://t.me/DonghyeonMin" class="social-link-item" target="_blank"><i class="fa fa-fw fa-telegram"></i></a></li>
+  </ul>
+</div>
+
+</div>
+
+      </div>
+    </div>
+    <div class="col s12 m9">
+      <div class="post-listing">
+        <a class="btn" href= "http://localhost:4000/" >
+  Home
+</a>
+
+<div class="post-image-feature">
+  <img class="feature-image" src=
+  
+  "http://localhost:4000/img/algorithm.jpg"
+  
+  alt="백준 4344 feature image">
+
+  
+</div><!-- /.image-wrap -->
+
+
+
+<div id="post">
+  <header class="post-header">
+    <h1 title="백준 4344">백준 4344</h1>
+    <span class="post-meta">
+      <span class="post-date">
+        11 NOV 2018
+      </span>
+      •
+      <span class="read-time" title="Estimated read time">
+  
+  
+    2 mins read
+  
+</span>
+
+    </span>
+
+  </header>
+
+  <article class="post-content">
+    <h1 id="백준-4344번--평균은-넘겠지">백준 4344번 : 평균은 넘겠지</h1>
+
+<p><a href="https://3.bp.blogspot.com/-y3UORdPXX5s/W-fVojvihZI/AAAAAAAABDE/CvDpLzP7dGoNYrtcNjUHhgZyaO5_P538gCLcBGAs/s1600/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%2B2018-11-11%2B%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2B4.08.06.png"><img src="https://3.bp.blogspot.com/-y3UORdPXX5s/W-fVojvihZI/AAAAAAAABDE/CvDpLzP7dGoNYrtcNjUHhgZyaO5_P538gCLcBGAs/s1600/%25E1%2584%2589%25E1%2585%25B3%25E1%2584%258F%25E1%2585%25B3%25E1%2584%2585%25E1%2585%25B5%25E1%2586%25AB%25E1%2584%2589%25E1%2585%25A3%25E1%2586%25BA%2B2018-11-11%2B%25E1%2584%258B%25E1%2585%25A9%25E1%2584%2592%25E1%2585%25AE%2B4.08.06.png" alt="img" /></a></p>
+
+<h2 id="정답">정답</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">package</span> <span class="n">baekjoon</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Problem4344</span> <span class="o">{</span>
+    <span class="c1">// 점수의 갯수</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">total</span><span class="o">;</span>
+    <span class="c1">// 점수의 합</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">totalScore</span><span class="o">;</span>
+    
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">s</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="na">nextLine</span><span class="o">());</span>
+        <span class="c1">// 첫번째 입력만큼 for문 돌려주기. </span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">num</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="cm">/* total : 점수의 갯수 
+             * totalScore : 점수의 합  
+             * for문 끝날때마다 0으로 다시 초기화 해주어야한다.
+             */</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">totalScore</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+            <span class="nc">String</span> <span class="n">str</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
+            <span class="n">calAverage</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+        <span class="o">}</span>    
+    <span class="o">}</span>
+    <span class="c1">// 평군구하는 함수</span>
+    <span class="kd">static</span> <span class="kd">private</span> <span class="kt">void</span> <span class="nf">calAverage</span><span class="o">(</span><span class="nc">String</span> <span class="n">str</span><span class="o">)</span> <span class="o">{</span>
+        
+        <span class="c1">//3 10 20 30 을 " " 공백으로 split해서 배열로 담기 .</span>
+        <span class="nc">String</span><span class="o">[]</span> <span class="n">strArray</span> <span class="o">=</span> <span class="n">str</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="c1">// 총 검사할 인원은 항상 0번째 배열에담겨있다.</span>
+        <span class="c1">// parseInt 함수를 써서 String -&gt; Int로 변환 작업</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">strArray</span><span class="o">[</span><span class="mi">0</span><span class="o">]);</span>
+        
+        <span class="cm">/* split한 배열중 0번째는 총 인원수.
+         * 1번째부터 마지막 배열은 점수의 관한 배열이므로 
+         * 하나하나씩 더해준다.
+         */</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">strArray</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="n">totalScore</span> <span class="o">+=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">strArray</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="o">}</span>
+        <span class="cm">/* totalScore/total 는 그 줄의 관한 평균 
+         * 만약 1~마지막배열 까지 평균과 비교해서 그 평균을 넘으면 
+         * num 변수를 ++ 해준다.
+         */</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">strArray</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span><span class="o">(</span><span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">strArray</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">&gt;</span> <span class="n">totalScore</span><span class="o">/</span><span class="n">total</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">num</span><span class="o">++;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="cm">/* 평균이넘은 점수의 갯수 / 배열의길이 -1 (첫번째배열은몇개 입력할것인지 이기때문에.)
+         *  * 100 으로 출력해주면 된다. 
+         */</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"%.3f%% \n"</span><span class="o">,(</span><span class="kt">double</span><span class="o">)</span><span class="n">num</span> <span class="o">/</span> <span class="o">((</span><span class="kt">double</span><span class="o">)</span><span class="n">strArray</span><span class="o">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="o">)*</span> <span class="mi">100</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>이번에 짠 소스코드는 정답 지향적으로 작성해서</p>
+
+<p>최적화된 알고리즘이 아니다.</p>
+
+<p>static 변수를 선언한 것도 그렇고, String을 Integer로 변환해주는 작업때문에</p>
+
+<p>다른 알고리즘 보다는 시간이 걸리는 알고리즘이 되었다.</p>
+
+<p>독자분들이 리펙토링 하는것도 좋겠다.</p>
+
+  </article>
+</div><!-- <div class="share-buttons">
+  <h6>Share on: </h6>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://localhost:4000/articles/2018-11/%EB%B0%B1%EC%A4%80-4344%EB%B2%88-%ED%8F%89%EA%B7%A0%EC%9D%80-%EB%84%98%EA%B2%A0%EC%A7%80" class="twitter btn" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/articles/2018-11/%EB%B0%B1%EC%A4%80-4344%EB%B2%88-%ED%8F%89%EA%B7%A0%EC%9D%80-%EB%84%98%EA%B2%A0%EC%A7%80" class="facebook btn" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://localhost:4000/articles/2018-11/%EB%B0%B1%EC%A4%80-4344%EB%B2%88-%ED%8F%89%EA%B7%A0%EC%9D%80-%EB%84%98%EA%B2%A0%EC%A7%80" class="google-plus btn" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+    <li>
+      <a href="https://news.ycombinator.com/submitlink?u=http://localhost:4000/articles/2018-11/%EB%B0%B1%EC%A4%80-4344%EB%B2%88-%ED%8F%89%EA%B7%A0%EC%9D%80-%EB%84%98%EA%B2%A0%EC%A7%80" class="hacker-news btn" title="Share on Hacker News"><i class="fa fa-hacker-news"></i><span> Hacker News</span></a>
+    </li>
+    <li>
+      <a href="https://www.reddit.com/submit?url=http://localhost:4000/articles/2018-11/%EB%B0%B1%EC%A4%80-4344%EB%B2%88-%ED%8F%89%EA%B7%A0%EC%9D%80-%EB%84%98%EA%B2%A0%EC%A7%80" class="reddit btn" title="Share on Reddit"><i class="fa fa-reddit"></i><span> Reddit</span></a>
+    </li>
+  </ul>
+</div><!-- end share-buttons --> 
+
+
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = 'daeakin';
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+
+        <footer>
+  &copy; 2019 민동현 <i class="fa fa-heart heart-icon"></i>
+</footer>
+
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="http://localhost:4000/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="http://localhost:4000/js/main.js"></script>
+
+
+</body>
+</html>
